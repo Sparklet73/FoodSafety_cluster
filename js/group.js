@@ -8,11 +8,11 @@ var categories = ['化學', '農產', '飼料', '食品', '飲料', '藥品', '�
 var types = ["1", "2", "3"];
 
 var current_layout = "center";
-var highlight = "none";
+//var highlight = "none";
 var clicked_cate = new Set();
 
 var colors = ['#F0C808', '#F694C1', '#B79CED', '#1787A0', '#15B097',
-    '#542E71', '#A2CD5A', '#5BC0EB', '#9E4770', '#F46036'];
+    '#542E71', '#A2CD5A', '#5BC0EB'];
 var byTypeCenters = {
     "1": {
         "x": -360,
@@ -77,7 +77,7 @@ function start() {
             .html(function (d) {
                 var nodetip = "<div class='tip-cate'>" + d.ComName +
                         "</div> <div class='tip-date'>" + d.Uninum +
-                        "</div> <div class='tip-amount'>" + "資本額 $" + d.Amount + "</div>";
+                        "</div> <div class='tip-amount'>" + "資本額 $" + d.Amount + "萬 </div>";
                 for (var t in d.SubCate) {
                     nodetip += "<div class='tip-SubCate-title'>" + t + "</div>";
                     nodetip += "<div class='tip-SubCate-content'>" + d.SubCate[t] + "</div>";
@@ -138,11 +138,12 @@ function start() {
 
                 if (clicked_cate.has(cate)) {
                     clicked_cate.delete(cate);
+                    cancel_highlight(clicked_cate);
                     d3.select("#" + cate).style("opacity", 0.3).style("background-color", "transparent");
                     d3.select("#label-wrap").style("display", "none");
                 } else {
                     clicked_cate.add(cate);
-                    set_highlight(cate);
+                    set_highlight(clicked_cate);
                     d3.select("#l-" + cate).style("display", "block");
                     clicked_cate.forEach(function (c) {
                         d3.select("#" + c).style("opacity", 1)
@@ -159,28 +160,43 @@ function start() {
                     d3.select("#label-wrap").style("display", "none");
                 }
             });
-
-    function cancel_cate(cate) {
+    function cancel_highlight(catelist) {
         circles.style("fill", function (d) {
-            for (var c in d.Category) {
-                if (d.Category[c] == cate) {
-                    return "#eee";
+            return "#eee";
+        });
+        circles.style("fill", function (d) {
+            var mixedcnt = 0;
+            var col;
+            catelist.forEach(function (cate) {
+                if (d.Category.indexOf(cate) > -1) {
+                    col = colors[categories.indexOf(d.Category[d.Category.indexOf(cate)])];
+                    mixedcnt += 1;
                 }
+            });
+            if (mixedcnt == 0) {
+                col = "#eee";
             }
+            if (mixedcnt == catelist.size && mixedcnt != 1) {
+                col = "red";
+            }
+            return col;
         });
     }
-
-    function set_highlight(cate) {
-        highlight = cate;
+    function set_highlight(catelist) {
         circles.style("fill", function (d) {
+            var mixedcnt = 0;
             var col;
-            for (var i in d.Category) {
-                if (d.Category[i] == cate) {
-                    col = colors[categories.indexOf(d.Category[i])];
-                    break;
-                } else {
-                    col = "#eee";
+            catelist.forEach(function (cate) {
+                if (d.Category.indexOf(cate) > -1) {
+                    col = colors[categories.indexOf(d.Category[d.Category.indexOf(cate)])];
+                    mixedcnt += 1;
                 }
+            });
+            if (mixedcnt == 0) {
+                col = "#eee";
+            }
+            if (mixedcnt == catelist.size && mixedcnt != 1) {
+                col = "red";
             }
             return col;
         });

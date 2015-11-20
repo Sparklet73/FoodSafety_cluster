@@ -76,7 +76,7 @@ body, html {
 
 /* d3 tips */
 .d3-tip {
-  max-width: 150px;
+  max-width: 200px;
   min-width: 100px;
   text-decoration: none;
   text-shadow:none;
@@ -128,8 +128,13 @@ body, html {
   margin-bottom: 5px;
 }
 
-.tip-desc{
-  font: 10px "Microsoft YaHei", sans-serif;
+.tip-SubCate-title {
+    font: 14px "Microsoft YaHei", sans-serif;
+    color: #E4FF1A;
+    font-weight: 300;
+}
+.tip-SubCate-content {
+  font: 12px "Microsoft YaHei", sans-serif;
   font-weight: 300;
 }
 

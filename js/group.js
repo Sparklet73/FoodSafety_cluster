@@ -1,11 +1,11 @@
 "use strict"
 // js for csv
-var mydata;
+var mydata = [];
 var radius = 600;
 var canvas_width = 1000;
 var canvas_height = 500;
-var categories = ['化學', '農產', '飼料', '食品', '飲料', '藥品', '保健食品', '其他產業'];
-var types = [];
+var categories = ['化學', '農產', '飼料', '食品', '飲料', '藥品', '保健食品', '其他'];
+var types = ["1", "2", "3"];
 
 var current_layout = "center";
 var highlight = "none";
@@ -15,15 +15,15 @@ var clicked_cate = new Set();
 var colors = ['#F0C808', '#F694C1', '#B79CED', '#1787A0', '#15B097',
     '#542E71', '#A2CD5A', '#5BC0EB', '#9E4770', '#F46036'];
 var byTypeCenters = {
-    "Unexpected": {
+    "1": {
         "x": -360,
         "y": canvas_height / 2
     },
-    "Purposed": {
+    "2": {
         "x": 340,
         "y": canvas_height / 2
     },
-    "Regular": {
+    "3": {
         "x": 1040,
         "y": canvas_height / 2
     }
@@ -33,27 +33,40 @@ var svg = d3.select("#svg-wrap").append("svg")
         .attr("width", canvas_width)
         .attr("height", canvas_height);
 
-d3.csv("data/data.csv", function (d) {
-//    var arrCate = d.Category.split(/,/);
-//    for (var c in arrCate) {
-//        if (categories.indexOf(arrCate[c]) < 0) {
-//            categories.push(arrCate[c]);
-////            console.log(categories);
-//        }
+//d3.csv("data/data.csv", function (d) {
+////    var arrCate = d.Category.split(/,/);
+////    for (var c in arrCate) {
+////        if (categories.indexOf(arrCate[c]) < 0) {
+////            categories.push(arrCate[c]);
+//////            console.log(categories);
+////        }
+////    }
+//    if (types.indexOf(d.Type) < 0) {
+//        types.push(d.Type);
 //    }
-    if (types.indexOf(d.Type) < 0) {
-        types.push(d.Type);
+//    return {
+//        uniNum: d.UniNum,
+//        comName: d.Name,
+//        category: d.Category.split(/,/),
+//        amount: +d.Amount, // convert "amount" to number
+//        type: d.Risk
+//    };
+//}, function (error, rows) {
+//    mydata = rows;
+//    console.log(mydata);
+//    start();//call start
+//});
+
+d3.json("data/data.json", function (error, data) {
+    if (error) {
+        return console.error(error);
+    } else {
+        for (var k in data) {
+            var k_data = data[k];
+            mydata.push(k_data);
+        }
+        start();
     }
-    return {
-        uniNum: d.UniNum,
-        comName: d.Name,
-        category: d.Category.split(/,/),
-        amount: +d.Amount, // convert "amount" to number
-        type: d.Risk
-    };
-}, function (error, rows) {
-    mydata = rows;
-    start();//call start
 });
 
 function start() {
@@ -63,7 +76,14 @@ function start() {
             .attr('class', 'd3-tip')
             .offset([-10, 0])
             .html(function (d) {
-                return "<div class='tip-cate'>" + d.comName + "</div> <div class='tip-date'>" + d.uniNum + "</div> <div class='tip-amount'>" + "$" + d.amount + "</div>";
+                var nodetip = "<div class='tip-cate'>" + d.ComName +
+                        "</div> <div class='tip-date'>" + d.Uninum +
+                        "</div> <div class='tip-amount'>" + "資本額 $" + d.Amount + "</div>";
+                for (var t in d.SubCate) {
+                    nodetip += "<div class='tip-SubCate-title'>" + t + "</div>";
+                    nodetip += "<div class='tip-SubCate-content'>" + d.SubCate[t] + "</div>";
+                }
+                return nodetip;
             });
 
     // call d3.tip.js
@@ -110,16 +130,17 @@ function start() {
     var cate_boxes = d3.selectAll(".cate-box")
             .on("click", function () {
                 var cate = d3.select(this).attr("id");
-                if (clicked_cate.has(cate)){
+                if (clicked_cate.has(cate)) {
                     clicked_cate.delete(cate);
                 } else {
                     clicked_cate.add(cate);
                 }
                 if (current_layout == "center") {
+                    d3.selectAll(".label-content").style("display", "none");
                     set_highlight(cate);
                     clicked_cate.forEach(function (c) {
-                        d3.select("#"+c).style("opacity", 1)
-                            .style("background-color", "white");
+                        d3.select("#" + c).style("opacity", 1)
+                                .style("background-color", "white");
                     });
                     d3.select("#label-wrap").style("display", "block");
                 } else if (current_layout == "byType") {
@@ -143,24 +164,22 @@ function start() {
 //                }
             });
 
-    var labels = d3.selectAll(".label-content");
-
     function set_highlight(cate) {
         if (cate == "none") {
             highlight = "none";
             circles.style("fill", function (d) {
-                return colors[categories.indexOf(d.category[0])];
+                return colors[categories.indexOf(d.Category[0])];
             });
             cate_boxes.style("opacity", 1)
                     .style("background-color", "transparent");
-            labels.style("display", "none");
+            d3.selectAll(".label-content").style("display", "none");
         } else {
             highlight = cate;
             circles.style("fill", function (d) {
                 var col;
-                for (var i in d.category) {
-                    if (d.category[i] == cate) {
-                        col = colors[categories.indexOf(d.category[i])];
+                for (var i in d.Category) {
+                    if (d.Category[i] == cate) {
+                        col = colors[categories.indexOf(d.Category[i])];
                         break;
                     } else {
                         col = "#eee";
@@ -184,14 +203,14 @@ function start() {
             .gravity(0.1)
             .friction(0.8)
             .charge(function (d) {
-                return -Math.pow(d.amount, 0.8) * 10;
+                return -Math.pow(d.Amount, 0.8) * 2;
             })
             .on("tick", function (e) {
                 var k = 0.1 * e.alpha;
                 if (current_layout == "byType") {
                     mydata.forEach(function (o, i) {
-                        o.y += (byTypeCenters[o.type].y - o.y) * k;
-                        o.x += (byTypeCenters[o.type].x - o.x) * k;
+                        o.y += (byTypeCenters[o.Risk].y - o.y) * k;
+                        o.x += (byTypeCenters[o.Risk].x - o.x) * k;
                         force.chargeDistance(220);
                     });
                 } else {
@@ -217,17 +236,17 @@ function start() {
                 return d.y;
             })
             .attr("r", function (d) {
-                return Math.sqrt(d.amount) * 3;
+                return Math.sqrt(d.Amount);
             })
             .attr("class", function (d) {
-                return d.type;
+                return d.Risk;
             })
             .attr("class", function (d) {
-//                console.log(d.category[1]);
-                return d.category[0];
+//                console.log(d.Category[1]);
+                return d.Category[0];
             })
             .style("fill", function (d) {
-                return colors[categories.indexOf(d.category[0])];
+                return colors[categories.indexOf(d.Category[0])];
             })
             .style("stroke", "white")
             .style("stroke-width", "2px")

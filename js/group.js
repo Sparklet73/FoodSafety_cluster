@@ -9,7 +9,6 @@ var types = ["1", "2", "3"];
 
 var current_layout = "center";
 var highlight = "none";
-var cnt_highlight = 0;
 var clicked_cate = new Set();
 
 var colors = ['#F0C808', '#F694C1', '#B79CED', '#1787A0', '#15B097',
@@ -106,7 +105,7 @@ function start() {
                 switch_view("byType");
                 d3.select(".nav-right").style("color", "white").style("background-color", "#00AE68");
                 d3.select(".nav-left").style("color", "#00AE68").style("background-color", "white");
-                set_highlight("none");
+//                set_highlight("none");
             });
 
     function switch_view(view) {
@@ -130,66 +129,62 @@ function start() {
     var cate_boxes = d3.selectAll(".cate-box")
             .on("click", function () {
                 var cate = d3.select(this).attr("id");
-                if (clicked_cate.has(cate)) {
-                    clicked_cate.delete(cate);
-                } else {
-                    clicked_cate.add(cate);
-                }
                 if (current_layout == "center") {
                     d3.selectAll(".label-content").style("display", "none");
+                    d3.select("#label-wrap").style("display", "block");
+                } else if (current_layout == "byType") {
+                    d3.select("#label-wrap").style("display", "none");
+                }
+
+                if (clicked_cate.has(cate)) {
+                    clicked_cate.delete(cate);
+                    d3.select("#" + cate).style("opacity", 0.3).style("background-color", "transparent");
+                    d3.select("#label-wrap").style("display", "none");
+                } else {
+                    clicked_cate.add(cate);
                     set_highlight(cate);
+                    d3.select("#l-" + cate).style("display", "block");
                     clicked_cate.forEach(function (c) {
                         d3.select("#" + c).style("opacity", 1)
                                 .style("background-color", "white");
                     });
-                    d3.select("#label-wrap").style("display", "block");
-                } else if (current_layout == "byType") {
-                    set_highlight(cate);
+                }
+
+                if (clicked_cate.size <= 0) {
+                    d3.selectAll(".cate-box").style("opacity", 1)
+                            .style("background-color", "transparent");
+                    circles.style("fill", function (d) {
+                        return colors[categories.indexOf(d.Category[0])];
+                    });
                     d3.select("#label-wrap").style("display", "none");
                 }
-
-//                if (highlight == "none" && current_layout == "center") {
-//                    set_highlight(cate);
-//                    d3.select(this).style("opacity", 1)
-//                            .style("background-color", "white");
-//                    d3.select("#label-wrap").style("display", "block");
-//                } else if (highlight == "none" && current_layout == "byType") {
-//                    set_highlight(cate);
-//                    d3.select(this).style("opacity", 1)
-//                            .style("background-color", "white");
-//                    d3.select("#label-wrap").style("display", "none");
-//                } else {
-//                    set_highlight("none");
-//                    d3.select("#label-wrap").style("display", "none");
-//                }
             });
+
+    function cancel_cate(cate) {
+        circles.style("fill", function (d) {
+            for (var c in d.Category) {
+                if (d.Category[c] == cate) {
+                    return "#eee";
+                }
+            }
+        });
+    }
 
     function set_highlight(cate) {
-        if (cate == "none") {
-            highlight = "none";
-            circles.style("fill", function (d) {
-                return colors[categories.indexOf(d.Category[0])];
-            });
-            cate_boxes.style("opacity", 1)
-                    .style("background-color", "transparent");
-            d3.selectAll(".label-content").style("display", "none");
-        } else {
-            highlight = cate;
-            circles.style("fill", function (d) {
-                var col;
-                for (var i in d.Category) {
-                    if (d.Category[i] == cate) {
-                        col = colors[categories.indexOf(d.Category[i])];
-                        break;
-                    } else {
-                        col = "#eee";
-                    }
+        highlight = cate;
+        circles.style("fill", function (d) {
+            var col;
+            for (var i in d.Category) {
+                if (d.Category[i] == cate) {
+                    col = colors[categories.indexOf(d.Category[i])];
+                    break;
+                } else {
+                    col = "#eee";
                 }
-                return col;
-            });
-            cate_boxes.style("opacity", 0.3);
-            d3.select("#l-" + cate).style("display", "block");
-        }
+            }
+            return col;
+        });
+        cate_boxes.style("opacity", 0.3);
     }
 
     // create circle selection

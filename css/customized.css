@@ -141,7 +141,7 @@ body, html {
 /* 風險分群模型 data-wrap */
 #data-wrap{
   width: 1140px;
-  height: 400px;
+  height: 600px;
   margin:0;
   padding: 0;
   position: relative;
@@ -150,7 +150,6 @@ body, html {
 #legend-wrap{
   position: absolute;
   left: 10px;
-  bottom: 0;
   width: 200px;
   height: 400px;
   font: 12px "Microsoft YaHei", sans-serif;
@@ -216,7 +215,7 @@ body, html {
   border-radius: 10px;
   padding: 20px 15px;
   position: absolute;
-  bottom:40px;
+  top: 30px;
   left:260px;
   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
   -moz-box-sizing: border-box;    /* Firefox, other Gecko */

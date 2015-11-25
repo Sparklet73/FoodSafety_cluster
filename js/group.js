@@ -77,7 +77,7 @@ function start() {
             .html(function (d) {
                 var nodetip = "<div class='tip-cate'>" + d.ComName +
                         "</div> <div class='tip-date'>" + d.Uninum +
-                        "</div> <div class='tip-amount'>" + "資本額 $" + d.Amount + "萬 </div>";
+                        "</div> <div class='tip-amount'>" + "資本額 $" + d.Capital + "萬 </div>";
                 for (var t in d.SubCate) {
                     nodetip += "<div class='tip-SubCate-title'>" + t + "</div>";
                     nodetip += "<div class='tip-SubCate-content'>" + d.SubCate[t] + "</div>";
@@ -214,7 +214,7 @@ function start() {
             .gravity(0.1)
             .friction(0.8)
             .charge(function (d) {
-                return -Math.pow(d.Amount, 0.8) * 2;
+                return -Math.pow(d.Capital, 0.5);
             })
             .on("tick", function (e) {
                 var k = 0.1 * e.alpha;
@@ -247,7 +247,7 @@ function start() {
                 return d.y;
             })
             .attr("r", function (d) {
-                return Math.sqrt(d.Amount);
+                return Math.log(d.Capital*10000);
             })
             .attr("class", function (d) {
                 return d.Risk;

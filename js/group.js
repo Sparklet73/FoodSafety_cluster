@@ -2,7 +2,7 @@
 // js for csv
 var mydata = [];
 var radius = 600;
-var canvas_width = 1000;
+var canvas_width = 1100;
 var canvas_height = 500;
 var categories = ['化學', '農產', '飼料', '食品', '飲料', '藥品', '保健食品', '其他'];
 var types = ["1", "2", "3"];

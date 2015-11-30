@@ -107,10 +107,13 @@
                 <div class="col-md-10">
                     <div id="data-wrap">
                         <div id="legend-wrap" style="display: block;">
-                            <div class="leg-desc"><span style="font-size:16px">這是<span style="font-size:18px">塑化劑</span>的風險分群模型。</span><br><br>圓圈顏色依據稅籍登記類別；圓圈大小則根據該企業之資本額。</div>
-                            <div class="leg-img"><img src="img/legend.png"></div>
-                            <div class="leg-remark">a circle = an expense</div>
+                            <div class="leg-desc"><span style="font-size:16px">這是<span style="font-size:18px">塑化劑</span>的風險分群模型。</span>
+                                <br><br>塑化劑絕對跟食品製造無關，而風險清單中，食品類卻佔<span style="font-size:18px">11%</span>。飲料分類佔<span style="font-size:18px">3%</span>。
+                                <br><br>建議可持續追查<span style="font-size:18px">24%</span>化學分類下游販售對象。
+                                <br><br>圓圈顏色依據稅籍登記類別；圓圈大小則根據該企業之資本額。</div>
+                            <div id="pla_pie"></div>
                         </div>
+                        
 
                         <div id="label-wrap" style="display: none;">
                             <div class="cate-label">
@@ -217,8 +220,6 @@
                     <div id="data-wrap">
                         <div id="legend-wrap" style="display: block;">
                             <div class="leg-desc"><span style="font-size:16px">這是<span style="font-size:18px">甲醛</span>的風險分群模型。</span><br><br>圓圈顏色依據稅籍登記類別；圓圈大小則根據該企業之資本額。</div>
-                            <div class="leg-img"><img src="img/legend.png"></div>
-                            <div class="leg-remark">a circle = an expense</div>
                         </div>
 
                         <div id="label-wrap" style="display: none;">
@@ -326,8 +327,6 @@
                     <div id="data-wrap">
                         <div id="legend-wrap" style="display: block;">
                             <div class="leg-desc"><span style="font-size:16px">這是<span style="font-size:18px">二氯甲烷</span>的風險分群模型。</span><br><br>圓圈顏色依據稅籍登記類別；圓圈大小則根據該企業之資本額。</div>
-                            <div class="leg-img"><img src="img/legend.png"></div>
-                            <div class="leg-remark">a circle = an expense</div>
                         </div>
 
                         <div id="label-wrap" style="display: none;">
@@ -435,8 +434,6 @@
                     <div id="data-wrap">
                         <div id="legend-wrap" style="display: block;">
                             <div class="leg-desc"><span style="font-size:16px">這是<span style="font-size:18px">二甲基甲醯胺</span>的風險分群模型。</span><br><br>圓圈顏色依據稅籍登記類別；圓圈大小則根據該企業之資本額。</div>
-                            <div class="leg-img"><img src="img/legend.png"></div>
-                            <div class="leg-remark">a circle = an expense</div>
                         </div>
 
                         <div id="label-wrap" style="display: none;">
@@ -567,5 +564,6 @@
         <!-- Javascripts
         ================================================== -->
         <script type="text/javascript" src="js/group.js"></script>
+        <script type="text/javascript" src="js/piechart.js"></script>
     </body>
 </html>

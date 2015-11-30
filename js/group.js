@@ -1,9 +1,12 @@
 "use strict"
 // js for csv
+
 var mydata = [];
 var radius = 600;
-var canvas_width = 1100;
-var canvas_height = 500;
+//var canvas_width = window.innerWidth - 200;
+//var canvas_height = window.innerHeight - 100;
+var canvas_width = 1340 - 200;
+var canvas_height = 600 - 100;
 var categories = ['化學', '農產', '飼料', '食品', '飲料', '藥品', '保健食品', '其他'];
 var types = ["1", "2", "3"];
 
@@ -15,19 +18,20 @@ var colors = ['#F0C808', '#F694C1', '#B79CED', '#1787A0', '#15B097',
     '#542E71', '#A2CD5A', '#5BC0EB'];
 var byTypeCenters = {
     "1": {
-        "x": -360,
+        "x": -190,
         "y": canvas_height / 2
     },
     "2": {
-        "x": 340,
+        "x": 610,
         "y": canvas_height / 2
     },
     "3": {
-        "x": 1040,
+        "x": 1310,
         "y": canvas_height / 2
     }
 };
-
+      
+    console.log(canvas_width);  
 var svg = d3.select("#svg-wrap").append("svg")
         .attr("width", canvas_width)
         .attr("height", canvas_height);
@@ -77,7 +81,7 @@ function start() {
             .html(function (d) {
                 var nodetip = "<div class='tip-cate'>" + d.ComName +
                         "</div> <div class='tip-date'>" + d.Uninum +
-                        "</div> <div class='tip-amount'>" + "資本額 $" + d.Capital + "萬 </div>";
+                        "</div> <div class='tip-amount'>" + "資本額 $" + d.Capital + " 萬 </div>";
                 for (var t in d.SubCate) {
                     nodetip += "<div class='tip-SubCate-title'>" + t + "</div>";
                     nodetip += "<div class='tip-SubCate-content'>" + d.SubCate[t] + "</div>";
@@ -247,7 +251,7 @@ function start() {
                 return d.y;
             })
             .attr("r", function (d) {
-                return Math.log(d.Capital*10000);
+                return Math.log(d.Capital * 10000);
             })
             .attr("class", function (d) {
                 return d.Risk;

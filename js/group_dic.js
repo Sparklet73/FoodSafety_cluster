@@ -1,21 +1,20 @@
 "use strict"
 // js for csv
 
-var mydata = [];
-var radius = 600;
+var mydata_dic = [];
+var radius = 500;
 //var canvas_width = window.innerWidth - 200;
 //var canvas_height = window.innerHeight - 100;
 var canvas_width = 1340 - 200;
 var canvas_height = 600 - 100;
-var categories = ['化學', '農產', '飼料', '食品', '飲料', '藥品', '保健食品', '其他'];
+var categories = ['化學', '農產', '飼料', '食品', '飲料', '藥品', '其他'];
 var types = ["1", "2", "3"];
 
-var current_layout = "center";
+var current_layout_dic = "center";
 //var highlight = "none";
-var clicked_cate = new Set();
+var clicked_cate_dic = new Set();
 
-var colors = ['#F0C808', '#F694C1', '#B79CED', '#1787A0', '#15B097',
-    '#542E71', '#A2CD5A', '#5BC0EB'];
+var colors = ['#F0C808', '#F694C1', '#B79CED', '#1787A0', '#15B097', '#542E71', '#5BC0EB'];
 var byTypeCenters = {
     "1": {
         "x": -190,
@@ -30,9 +29,8 @@ var byTypeCenters = {
         "y": canvas_height / 2
     }
 };
-      
-    console.log(canvas_width);  
-var svg = d3.select("#svg-wrap").append("svg")
+
+var svg_dic = d3.select("#svg-wrap-dic").append("svg")
         .attr("width", canvas_width)
         .attr("height", canvas_height);
 
@@ -55,33 +53,33 @@ var svg = d3.select("#svg-wrap").append("svg")
 //        type: d.Risk
 //    };
 //}, function (error, rows) {
-//    mydata = rows;
-//    console.log(mydata);
+//    mydata_dic = rows;
+//    console.log(mydata_dic);
 //    start();//call start
 //});
 
-d3.json("data/data.json", function (error, data) {
+d3.json("Dichloromethane.json", function (error, data) {
     if (error) {
         return console.error(error);
     } else {
         for (var k in data) {
             var k_data = data[k];
-            mydata.push(k_data);
+            mydata_dic.push(k_data);
         }
-        start();
+        start_dic();
     }
 });
 
-function start() {
+function start_dic() {
 
     // prepare d3 tips
-    var tip = d3.tip()
+    var tip_dic = d3.tip()
             .attr('class', 'd3-tip')
             .offset([-10, 0])
             .html(function (d) {
-                var nodetip = "<div class='tip-cate'>" + d.ComName +
-                        "</div> <div class='tip-date'>" + d.Uninum +
-                        "</div> <div class='tip-amount'>" + "資本額 $" + d.Capital + " 萬 </div>";
+                var nodetip = "<div class='tip-cate'>" + d.ComName + "<br>" + d.Uninum +
+                        "</div> <div class='tip-capital'>" + "資本額: " + d.Capital + " 萬" +
+                        "</div> <div class='tip-amount'>" + "運作量: " + d.Amount + " 公噸 </div>";
                 for (var t in d.SubCate) {
                     nodetip += "<div class='tip-SubCate-title'>" + t + "</div>";
                     nodetip += "<div class='tip-SubCate-content'>" + d.SubCate[t] + "</div>";
@@ -90,85 +88,95 @@ function start() {
             });
 
     // call d3.tip.js
-    svg.call(tip);
+    svg_dic.call(tip_dic);
 
     // add click callbacks to navigate buttons
-    d3.select(".nav-left")
+    d3.select("#dic-nav-left")
             .on("click", function () {
-                current_layout = "center";
-                force.resume();
+                current_layout_dic = "center";
+                force_pla.resume();
                 switch_view("center");
-                d3.select(".nav-right").style("color", "#00AE68").style("background-color", "white");
-                d3.select(".nav-left").style("color", "white").style("background-color", "#00AE68");
+                d3.select("#dic-nav-right").style("color", "#00AE68").style("background-color", "white");
+                d3.select("#dic-nav-left").style("color", "white").style("background-color", "#00AE68");
             });
 
-    d3.select(".nav-right")
+    d3.select("#dic-nav-right")
             .on("click", function () {
-                current_layout = "byType";
-                force.resume();
+                current_layout_dic = "byType";
+                force_pla.resume();
                 switch_view("byType");
-                d3.select(".nav-right").style("color", "white").style("background-color", "#00AE68");
-                d3.select(".nav-left").style("color", "#00AE68").style("background-color", "white");
+                d3.select("#dic-nav-right").style("color", "white").style("background-color", "#00AE68");
+                d3.select("#dic-nav-left").style("color", "#00AE68").style("background-color", "white");
 //                set_highlight("none");
             });
 
     function switch_view(view) {
-        var type_dis;
-        var cate_dis;
+        var type_dis_dic;
+        var cate_dis_dic;
         if (view == "byType") {
-            type_dis = "block";
-            cate_dis = "none";
+            type_dis_dic = "block";
+            cate_dis_dic = "none";
         }
         else {
-            type_dis = "none";
-            cate_dis = "block";
+            type_dis_dic = "none";
+            cate_dis_dic = "block";
         }
-        d3.select("#type-wrap").style("display", type_dis);
-        d3.select("#type-title-wrap").style("display", type_dis);
-        d3.select("#legend-wrap").style("display", cate_dis);
-        d3.select("#label-wrap").style("display", "none");
+        d3.select("#type-wrap-dic").style("display", type_dis_dic);
+        d3.select("#type-title-wrap-dic").style("display", type_dis_dic);
+        d3.select("#legend-wrap-dic").style("display", cate_dis_dic);
+        d3.select("#label-wrap-dic").style("display", "none");
     }
 
     // add click callbacks to categories
-    var cate_boxes = d3.selectAll(".cate-box")
+    var cate_boxes_dic = d3.selectAll(".cate-box-dic")
             .on("click", function () {
-                var cate = d3.select(this).attr("id");
-                if (current_layout == "center") {
-                    d3.selectAll(".label-content").style("display", "none");
-                    d3.select("#label-wrap").style("display", "block");
-                } else if (current_layout == "byType") {
-                    d3.select("#label-wrap").style("display", "none");
+                var temp1 = d3.select(this).attr("id");
+                var temp2 = temp1.split("-");
+                var cate = temp2[3];
+                if (current_layout_dic == "center") {
+                    d3.selectAll(".label-content-dic").style("display", "none");
+                    d3.select("#label-wrap-dic").style("display", "block");
+                } else if (current_layout_dic == "byType") {
+                    d3.select("#label-wrap-dic").style("display", "none");
                 }
-
-                if (clicked_cate.has(cate)) {
-                    clicked_cate.delete(cate);
-                    cancel_highlight(clicked_cate);
-                    d3.select("#" + cate).style("opacity", 0.3).style("background-color", "transparent");
-                    d3.select("#label-wrap").style("display", "none");
+                var strSummary = "";
+                if (clicked_cate_dic.has(cate)) {
+                    clicked_cate_dic.delete(cate);
+                    cancel_highlight(clicked_cate_dic);
+                    d3.select("#cate-box-dic-" + cate).style("opacity", 0.3).style("background-color", "transparent");
+                    d3.select("#label-wrap-dic").style("display", "none");
                 } else {
-                    clicked_cate.add(cate);
-                    set_highlight(clicked_cate);
-                    d3.select("#l-" + cate).style("display", "block");
-                    clicked_cate.forEach(function (c) {
-                        d3.select("#" + c).style("opacity", 1)
+                    clicked_cate_dic.add(cate);
+                    set_highlight(clicked_cate_dic);
+                    mydata_dic.forEach(function (o, i) {
+                        o.Category.forEach(function (j) {
+                            if (j == cate) {
+                                strSummary += o.ComName + "<br>";
+                            }
+                        })
+                    });
+                    $("#dic-" + cate + "-summary").html(strSummary);
+                    d3.select("#l-dic-" + cate).style("display", "block");
+                    clicked_cate_dic.forEach(function (c) {
+                        d3.select("#cate-box-dic-" + c).style("opacity", 1)
                                 .style("background-color", "white");
                     });
                 }
 
-                if (clicked_cate.size <= 0) {
-                    d3.selectAll(".cate-box").style("opacity", 1)
+                if (clicked_cate_dic.size <= 0) {
+                    d3.selectAll(".cate-box-dic").style("opacity", 1)
                             .style("background-color", "transparent");
-                    circles.style("fill", function (d) {
+                    circles_dic.style("fill", function (d) {
                         return colors[categories.indexOf(d.Category[0])];
                     });
-                    d3.select("#label-wrap").style("display", "none");
+                    d3.select("#label-wrap-dic").style("display", "none");
                 }
             });
     function cancel_highlight(catelist) {
-        circles.style("fill", function (d) {
+        circles_dic.style("fill", function (d) {
             return "#eee";
         });
-        circles.style("fill", function (d) {
+        circles_dic.style("fill", function (d) {
             var mixedcnt = 0;
             var col;
             catelist.forEach(function (cate) {
@@ -187,7 +195,7 @@ function start() {
         });
     }
     function set_highlight(catelist) {
-        circles.style("fill", function (d) {
+        circles_dic.style("fill", function (d) {
             var mixedcnt = 0;
             var col;
             catelist.forEach(function (cate) {
@@ -204,39 +212,39 @@ function start() {
             }
             return col;
         });
-        cate_boxes.style("opacity", 0.3);
+        cate_boxes_dic.style("opacity", 0.3);
     }
 
     // create circle selection
-    var circles = svg.selectAll('circle')
-            .data(mydata).enter().append("circle");
+    var circles_dic = svg_dic.selectAll('circle')
+            .data(mydata_dic).enter().append("circle");
 
-    var force = d3.layout.force()
-            .nodes(mydata)
+    var force_pla = d3.layout.force()
+            .nodes(mydata_dic)
             .links([])
             .size([canvas_width, canvas_height])
             .gravity(0.1)
             .friction(0.8)
             .charge(function (d) {
-                return -Math.pow(d.Capital, 0.5);
+                return -Math.pow(d.Capital, 0.4);
             })
             .on("tick", function (e) {
                 var k = 0.1 * e.alpha;
-                if (current_layout == "byType") {
-                    mydata.forEach(function (o, i) {
+                if (current_layout_dic == "byType") {
+                    mydata_dic.forEach(function (o, i) {
                         o.y += (byTypeCenters[o.Risk].y - o.y) * k;
                         o.x += (byTypeCenters[o.Risk].x - o.x) * k;
-                        force.chargeDistance(220);
+                        force_pla.chargeDistance(220);
                     });
                 } else {
-                    mydata.forEach(function (o, i) {
+                    mydata_dic.forEach(function (o, i) {
                         o.y += (canvas_height / 2 - 20 - o.y) * k;
                         o.x += (canvas_width / 2 + 400 - o.x) * k;
-                        force.chargeDistance(9999999999);
+                        force_pla.chargeDistance(9999999999);
                     });
                 }
 
-                circles.attr("cx", function (d) {
+                circles_dic.attr("cx", function (d) {
                     return d.x;
                 })
                         .attr("cy", function (d) {
@@ -244,14 +252,14 @@ function start() {
                         });
             });
 
-    circles.attr("cx", function (d, i) {
+    circles_dic.attr("cx", function (d, i) {
         return d.x;
     })
             .attr("cy", function (d, i) {
                 return d.y;
             })
             .attr("r", function (d) {
-                return Math.log(d.Capital * 10000);
+                return Math.log(d.Amount * 100000000);
             })
             .attr("class", function (d) {
                 return d.Risk;
@@ -268,7 +276,7 @@ function start() {
             .style("cursor", "all-scroll")
             .on('mouseenter', function (d) {
                 var current_opacity = d3.select(".d3-tip").style("opacity");
-                tip.show(d);
+                tip_dic.show(d);
                 d3.select(".d3-tip")
                         .style("opacity", current_opacity)
                         .transition()
@@ -284,11 +292,11 @@ function start() {
                         .style("opacity", 0)
                         .style('pointer-events', 'none');
             })
-            .call(force.drag);
+            .call(force_pla.drag);
 
     switch_view("center");
 
-    force.start();
+    force_pla.start();
 
 }
 ;// end of function start

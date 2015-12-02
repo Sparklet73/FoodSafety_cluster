@@ -482,11 +482,11 @@ ol.type li a.active { font-weight: 700; }
 	padding: 80px 0;
 }
 
-label {
+.label {
 	float: left;
-	font-size: 12px;
-	font-weight: 400;
-	font-family: 'Open Sans', sans-serif;
+	font-size: 18px;
+	font-weight: normal;
+	font-family: "Microsoft YaHei", sans-serif;
 }
 #tf-contact .form-control {
 	display: block;
@@ -554,7 +554,8 @@ button.btn.tl-btn.btn-default {
 nav#footer{
 	background: #222222;
 	color: #ffffff;
-	padding: 5px 0 10px 0;
+	padding: 10px 0 10px 0;
+        font-family: "Microsoft YaHei", sans-serif;
 }
 nav#footer .fnav{ vertical-align: middle;}
 ul.footer-social li{
@@ -563,7 +564,6 @@ ul.footer-social li{
 }
 nav#footer p{
 	font-size: 12px;
-	margin-top: 10px;
 }
 #footer i.fa {
 	height: 30px;

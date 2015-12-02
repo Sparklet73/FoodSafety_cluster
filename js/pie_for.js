@@ -1,19 +1,19 @@
 
 var width = 240,
         height = 240,
-        radius = Math.min(width - 20, height - 20) / 2;
+        radius = Math.min(width-20, height-20) / 2;
 
 var color = d3.scale.ordinal()
-        .domain(['化學', '農產', '飼料', '食品', '飲料', '藥品', '保健食品', '其他'])
-        .range(['#F0C808', '#F694C1', '#B79CED', '#1787A0', '#15B097', '#542E71', '#A2CD5A', '#5BC0EB']);
+        .domain(['化學', '農產', '飼料', '食品', '飲料', '藥品', '其他'])
+        .range(['#F0C808', '#F694C1', '#B79CED', '#1787A0', '#15B097', '#542E71', '#A2CD5A']);
 
 var arc = d3.svg.arc()
         .outerRadius(radius - 30)
         .innerRadius(0);
 
 var labelArc = d3.svg.arc()
-        .outerRadius(radius - 10)
-        .innerRadius(radius - 10);
+        .outerRadius(radius - 20)
+        .innerRadius(radius - 20);
 
 var pie = d3.layout.pie()
         .sort(null)
@@ -21,17 +21,17 @@ var pie = d3.layout.pie()
             return d.Percentage;
         });
 
-var svg_pla = d3.select("#pla_pie").append("svg")
+var svg_pie_form = d3.select("#pie_for").append("svg")
         .attr("width", width)
         .attr("height", height)
         .append("g")
-        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
+        .attr("transform", "translate(" + width / 2.5 + "," + height / 2 + ")");
 
-d3.csv("pla_pie.csv", type, function (error, data) {
+d3.csv("pie_for.csv", type, function (error, data) {
     if (error)
         throw error;
 
-    var g = svg_pla.selectAll(".arc")
+    var g = svg_pie_form.selectAll(".arc")
             .data(pie(data))
             .enter().append("g")
             .attr("class", "arc");

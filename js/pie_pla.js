@@ -1,4 +1,4 @@
-var pie = new d3pie("#pie_pla", {
+var pie_pla = new d3pie("#pie_pla", {
 	"header": {
 		"title": {
 			"fontSize": 22,

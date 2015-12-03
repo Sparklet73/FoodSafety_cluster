@@ -1,58 +1,112 @@
+var tog_for = false;
 
-var width = 240,
-        height = 240,
-        radius = Math.min(width-20, height-20) / 2;
-
-var color = d3.scale.ordinal()
-        .domain(['化學', '農產', '飼料', '食品', '飲料', '藥品', '其他'])
-        .range(['#F0C808', '#F694C1', '#B79CED', '#1787A0', '#15B097', '#542E71', '#A2CD5A']);
-
-var arc = d3.svg.arc()
-        .outerRadius(radius - 30)
-        .innerRadius(0);
-
-var labelArc = d3.svg.arc()
-        .outerRadius(radius - 20)
-        .innerRadius(radius - 20);
-
-var pie = d3.layout.pie()
-        .sort(null)
-        .value(function (d) {
-            return d.Percentage;
-        });
-
-var svg_pie_form = d3.select("#pie_for").append("svg")
-        .attr("width", width)
-        .attr("height", height)
-        .append("g")
-        .attr("transform", "translate(" + width / 2.5 + "," + height / 2 + ")");
-
-d3.csv("pie_for.csv", type, function (error, data) {
-    if (error)
-        throw error;
-
-    var g = svg_pie_form.selectAll(".arc")
-            .data(pie(data))
-            .enter().append("g")
-            .attr("class", "arc");
-    
-    g.append("path")
-            .attr("d", arc)
-            .style("fill", function (d) {
-                return color(d.data.Var1);
+$('ul.nav a').on('shown.bs.tab', function (e) {
+    if (e.currentTarget.hash == "#tabJiaquan") {
+        if (tog_for == false) {
+            tog_for = true;
+            var pie_for = new d3pie("#pie_for", {
+                "header": {
+                    "title": {
+                        "fontSize": 22,
+                        "font": "verdana"
+                    },
+                    "subtitle": {
+                        "color": "#999999",
+                        "fontSize": 10,
+                        "font": "verdana"
+                    },
+                    "location": "top-left",
+                    "titleSubtitlePadding": 12
+                },
+                "footer": {
+                    "color": "#999999",
+                    "fontSize": 11,
+                    "font": "open sans",
+                    "location": "bottom-center"
+                },
+                "size": {
+                    "canvasHeight": 260,
+                    "canvasWidth": 320,
+                    "pieOuterRadius": "80%"
+                },
+                "data": {
+                    "sortOrder": "value-asc",
+                    "content": [
+                        {
+                            "label": "化學",
+                            "value": 14.75,
+                            "color": "#F0C808"
+                        },
+                        {
+                            "label": "其他",
+                            "value": 22.3,
+                            "color": "#A2CD5A"
+                        },
+                        {
+                            "label": "食品",
+                            "value": 20.5,
+                            "color": "#1787A0"
+                        },
+                        {
+                            "label": "藥品",
+                            "value": 27.34,
+                            "color": "#542E71"
+                        },
+                        {
+                            "label": "飲料",
+                            "value": 11.87,
+                            "color": "#15B097"
+                        },
+                        {
+                            "label": "農產",
+                            "value": 1.44,
+                            "color": "#F694C1"
+                        },
+                        {
+                            "label": "飼料",
+                            "value": 1.8,
+                            "color": "#B79CED"
+                        }
+                    ]
+                },
+                "labels": {
+                    "outer": {
+                        "format": "label-percentage2",
+                        "pieDistance": 32
+                    },
+                    "inner": {
+                        "format": "none"
+                    },
+                    "mainLabel": {
+                        "font": "verdana",
+                        "fontSize": 12
+                    },
+                    "percentage": {
+                        "color": "#333333",
+                        "font": "verdana",
+                        "fontSize": 12,
+                        "decimalPlaces": 0
+                    },
+                    "value": {
+                        "color": "#241515",
+                        "font": "verdana",
+                        "fontSize": 12
+                    },
+                    "lines": {
+                        "enabled": true,
+                        "color": "#726a6a"
+                    },
+                    "truncation": {
+                        "enabled": true
+                    }
+                },
+                "effects": {
+                    "pullOutSegmentOnClick": {
+                        "speed": 400,
+                        "size": 8
+                    }
+                }
             });
-
-    g.append("text")
-            .attr("transform", function (d) {
-                return "translate(" + labelArc.centroid(d) + ")";
-            })
-            .attr("dy", ".35em")
-            .text(function (d) {
-                return d.data.Var1 + " " + Math.round(d.data.Percentage) + "%";
-            });
+        }
+    }
 });
-
-function type(d) {
-    d.Percentage = +d.Percentage;
-    return d;
-}

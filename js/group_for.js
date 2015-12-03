@@ -73,7 +73,7 @@ function start_form() {
 
     // prepare d3 tips
     var tip_for = d3.tip()
-            .attr('class', 'd3-tip')
+            .attr('class', 'd3-tip-for')
             .offset([-10, 0])
             .html(function (d) {
                 var nodetip = "<div class='tip-cate'>" + d.ComName + "<br>" + d.Uninum +
@@ -274,9 +274,9 @@ function start_form() {
             .style("stroke-width", "2px")
             .style("cursor", "all-scroll")
             .on('mouseenter', function (d) {
-                var current_opacity = d3.select(".d3-tip").style("opacity");
+                var current_opacity = d3.select(".d3-tip-for").style("opacity");
                 tip_for.show(d);
-                d3.select(".d3-tip")
+                d3.select(".d3-tip-for")
                         .style("opacity", current_opacity)
                         .transition()
                         .duration(300)
@@ -284,7 +284,7 @@ function start_form() {
                         .style('pointer-events', 'none');
             })
             .on('mouseleave', function () {
-                d3.select(".d3-tip")
+                d3.select(".d3-tip-for")
                         .transition()
                         .delay(100)
                         .duration(600)

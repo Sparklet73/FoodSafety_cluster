@@ -74,7 +74,7 @@ function start_dic() {
 
     // prepare d3 tips
     var tip_dic = d3.tip()
-            .attr('class', 'd3-tip')
+            .attr('class', 'd3-tip-dic')
             .offset([-10, 0])
             .html(function (d) {
                 var nodetip = "<div class='tip-cate'>" + d.ComName + "<br>" + d.Uninum +
@@ -275,9 +275,9 @@ function start_dic() {
             .style("stroke-width", "2px")
             .style("cursor", "all-scroll")
             .on('mouseenter', function (d) {
-                var current_opacity = d3.select(".d3-tip").style("opacity");
+                var current_opacity = d3.select(".d3-tip-dic").style("opacity");
                 tip_dic.show(d);
-                d3.select(".d3-tip")
+                d3.select(".d3-tip-dic")
                         .style("opacity", current_opacity)
                         .transition()
                         .duration(300)
@@ -285,7 +285,7 @@ function start_dic() {
                         .style('pointer-events', 'none');
             })
             .on('mouseleave', function () {
-                d3.select(".d3-tip")
+                d3.select(".d3-tip-dic")
                         .transition()
                         .delay(100)
                         .duration(600)

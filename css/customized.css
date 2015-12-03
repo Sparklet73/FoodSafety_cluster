@@ -84,7 +84,7 @@ body, html {
 }
 
 /* d3 tips */
-.d3-tip {
+.d3-tip-pla, .d3-tip-for, .d3-tip-dic, .d3-tip-dmf {
     max-width: 100%;
     min-width: 100px;
     text-decoration: none;
@@ -99,8 +99,7 @@ body, html {
     box-sizing: border-box;         /* Opera/IE 8+ */
     z-index: 9999;
 }
-
-.d3-tip:after {
+.d3-tip-pla:after, .d3-tip-for:after, .d3-tip-dic:after, .d3-tip-dmf:after {
     display: inline;
     font-size: 10px;
     width: 100%;

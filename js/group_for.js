@@ -5,8 +5,8 @@ var mydata_form = [];
 var radius = 600;
 //var canvas_width = window.innerWidth - 200;
 //var canvas_height = window.innerHeight - 100;
-var canvas_width = 1340 - 200;
-var canvas_height = 600 - 100;
+//var canvas_width = 1028 - 200;
+//var canvas_height = 600 - 100;
 var categories = ['化學', '農產', '飼料', '食品', '飲料', '藥品', '其他'];
 var types = ["1", "2", "3"];
 
@@ -120,7 +120,7 @@ function start_form() {
             type_dis_for = "none";
             cate_dis_for = "block";
         }
-        d3.select("#type-wrap-for").style("display", type_dis_for);
+//        d3.select("#type-wrap-for").style("display", type_dis_for);
         d3.select("#type-title-wrap-for").style("display", type_dis_for);
         d3.select("#legend-wrap-for").style("display", cate_dis_for);
         d3.select("#label-wrap-for").style("display", "none");
@@ -146,7 +146,7 @@ function start_form() {
                     d3.select("#label-wrap-for").style("display", "none");
                 } else {
                     clicked_cate_for.add(cate);
-                    set_highlight(clicked_cate_for);
+                    set_highlight(clicked_cate_for, cate);
                     mydata_form.forEach(function (o, i) {
                         o.Category.forEach(function (j) {
                             if (j == cate) {
@@ -193,7 +193,8 @@ function start_form() {
             return col;
         });
     }
-    function set_highlight(catelist) {
+    function set_highlight(catelist, cate) {
+        var cntCateinter = 0;
         circles_for.style("fill", function (d) {
             var mixedcnt = 0;
             var col;
@@ -208,9 +209,13 @@ function start_form() {
             }
             if (mixedcnt == catelist.size && mixedcnt != 1) {
                 col = "red";
+                cntCateinter += 1;
             }
             return col;
         });
+        if(cntCateinter != 0) {
+            $("#for-" + cate + "-cateinter").html("交集的廠商數：" + cntCateinter);
+        }
         cate_boxes_for.style("opacity", 0.3);
     }
 

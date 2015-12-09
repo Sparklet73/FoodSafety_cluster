@@ -19,8 +19,7 @@ body, html {
 .tab-content {
     postion: relative;
     margin: 0 auto;
-    width: 1340px;
-    height: 600px;
+    height: 700px;
 }
 
 #footer {
@@ -43,7 +42,7 @@ body, html {
 }*/
 
 .nav-rcm{
-    width: 100px;
+    width: 80px;
     height: 26px;
     float: left;
     text-align: center;
@@ -67,8 +66,6 @@ body, html {
     -webkit-box-shadow: 0px 0px 10px -4px rgba(255,165,0,1);
     -moz-box-shadow: 0px 0px 10px -4px rgba(255,165,0,1);
     box-shadow: 0px 0px 10px -4px rgba(255,165,0,1);
-    background: #21825B;
-    color: white;
 }
 
 .nav-left{
@@ -147,7 +144,7 @@ body, html {
 
 /* 風險分群模型 data-wrap */
 .data-wrap{
-    height: 600px;
+    height: 500px;
     margin:0;
     padding: 0;
     position: relative;
@@ -198,7 +195,7 @@ body, html {
     text-align: center;
     vertical-align: bottom;
 }*/
-
+/*
 .type-wrap{
     position: absolute;
     bottom: 100px;
@@ -207,7 +204,7 @@ body, html {
     font: 14px "Microsoft YaHei", sans-serif;
     font-weight: 300;
     color: #888;
-}
+}*/
 
 /*style for cate-label*/
 .label-wrap{
@@ -269,19 +266,21 @@ body, html {
     overflow-y: auto;
     height: 150px;
 }
-/*
-.cate-amount{
+
+.cateinter{
     font: 16px "Microsoft YaHei", sans-serif;
     font-weight: 300;
     margin-top: 15px;
     color: #666;
-}*/
+}
 
 /* 風險分群模型 category-wrap */
 /*style for cate-area*/
 .menu-wrap{
     text-align: center;
     padding: 0 0 5px 0;
+/*    width: 200px;
+    white-space: break-word; */
     /*border-top: solid #666 1px;*/
     /*border-bottom: solid #666 1px;*/
 }
@@ -314,6 +313,15 @@ body, html {
     padding: 2px;
     /*margin-top: 5px;*/
     border-radius: 18px;
+}
+
+.alert-danger-alt { border-color: #B63E5A;background: #E26868;color: #fff; }
+.alert-graph-rule { border-color: #19B99A;background: #58A4B0;color: #fff; }
+
+@media (min-width:1024 px) {
+    .alert-graph-rule {
+        margin-left:20px;
+    }
 }
 
 /*.cate-desc{

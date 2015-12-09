@@ -5,8 +5,8 @@ var mydata_dmf = [];
 var radius = 500;
 //var canvas_width = window.innerWidth - 200;
 //var canvas_height = window.innerHeight - 100;
-var canvas_width = 1340 - 200;
-var canvas_height = 600 - 100;
+//var canvas_width = 1028 - 200;
+//var canvas_height = 600 - 100;
 var categories = ['化學', '農產', '飼料', '食品', '飲料', '藥品', '其他'];
 var types = ["1", "2", "3"];
 
@@ -121,7 +121,7 @@ function start_dmf() {
             type_dis_dmf = "none";
             cate_dis_dmf = "block";
         }
-        d3.select("#type-wrap-dmf").style("display", type_dis_dmf);
+//        d3.select("#type-wrap-dmf").style("display", type_dis_dmf);
         d3.select("#type-title-wrap-dmf").style("display", type_dis_dmf);
         d3.select("#legend-wrap-dmf").style("display", cate_dis_dmf);
         d3.select("#label-wrap-dmf").style("display", "none");
@@ -147,7 +147,7 @@ function start_dmf() {
                     d3.select("#label-wrap-dmf").style("display", "none");
                 } else {
                     clicked_cate_dmf.add(cate);
-                    set_highlight(clicked_cate_dmf);
+                    set_highlight(clicked_cate_dmf, cate);
                     mydata_dmf.forEach(function (o, i) {
                         o.Category.forEach(function (j) {
                             if (j == cate) {
@@ -194,7 +194,8 @@ function start_dmf() {
             return col;
         });
     }
-    function set_highlight(catelist) {
+    function set_highlight(catelist, cate) {
+        var cntCateinter = 0;
         circles_dmf.style("fill", function (d) {
             var mixedcnt = 0;
             var col;
@@ -209,9 +210,13 @@ function start_dmf() {
             }
             if (mixedcnt == catelist.size && mixedcnt != 1) {
                 col = "red";
+                cntCateinter += 1;
             }
             return col;
         });
+        if(cntCateinter != 0) {
+            $("#dmf-" + cate + "-cateinter").html("交集的廠商數：" + cntCateinter);
+        }
         cate_boxes_dmf.style("opacity", 0.3);
     }
 

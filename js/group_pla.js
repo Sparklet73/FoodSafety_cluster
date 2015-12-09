@@ -3,10 +3,10 @@
 
 var mydata_pla = [];
 var radius = 600;
-//var canvas_width = window.innerWidth - 200;
-//var canvas_height = window.innerHeight - 100;
-var canvas_width = 1340 - 200;
-var canvas_height = 600 - 100;
+var canvas_width = window.innerWidth;
+var canvas_height = window.innerHeight - 200;
+//var canvas_width = 1028 - 200;
+//var canvas_height = 600 - 100;
 var categories = ['化學', '農產', '飼料', '食品', '飲料', '藥品', '其他'];
 var types = ["1", "2", "3"];
 
@@ -17,15 +17,15 @@ var clicked_cate_pla = new Set();
 var colors = ['#F0C808', '#F694C1', '#B79CED', '#1787A0', '#15B097', '#542E71', '#5BC0EB'];
 var byTypeCenters = {
     "1": {
-        "x": -190,
+        "x": canvas_width - 828,
         "y": canvas_height / 2
     },
     "2": {
-        "x": 610,
+        "x": canvas_width - 18,
         "y": canvas_height / 2
     },
     "3": {
-        "x": 1310,
+        "x": canvas_width + 282,
         "y": canvas_height / 2
     }
 };
@@ -121,7 +121,7 @@ function start() {
             type_dis_pla = "none";
             cate_dis_pla = "block";
         }
-        d3.select("#type-wrap-pla").style("display", type_dis_pla);
+//        d3.select("#type-wrap-pla").style("display", type_dis_pla);
         d3.select("#type-title-wrap-pla").style("display", type_dis_pla);
         d3.select("#legend-wrap-pla").style("display", cate_dis_pla);
         d3.select("#label-wrap-pla").style("display", "none");
@@ -147,7 +147,7 @@ function start() {
                     d3.select("#label-wrap-pla").style("display", "none");
                 } else {
                     clicked_cate_pla.add(cate);
-                    set_highlight(clicked_cate_pla);
+                    set_highlight(clicked_cate_pla, cate);
                     mydata_pla.forEach(function (o, i) {
                         o.Category.forEach(function (j) {
                             if (j == cate) {
@@ -194,7 +194,8 @@ function start() {
             return col;
         });
     }
-    function set_highlight(catelist) {
+    function set_highlight(catelist, cate) {
+        var cntCateinter = 0;
         circles_pla.style("fill", function (d) {
             var mixedcnt = 0;
             var col;
@@ -209,9 +210,14 @@ function start() {
             }
             if (mixedcnt == catelist.size && mixedcnt != 1) {
                 col = "red";
+                cntCateinter += 1;
             }
             return col;
         });
+//        console.log(cntCateinter);
+        if(cntCateinter != 0) {
+            $("#pla-" + cate + "-cateinter").html("交集的廠商數：" + cntCateinter);
+        }
         cate_boxes_pla.style("opacity", 0.3);
     }
 

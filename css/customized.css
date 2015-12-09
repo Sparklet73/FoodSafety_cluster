@@ -147,12 +147,12 @@ body, html {
 }
 
 /* 風險分群模型 data-wrap */
-.data-wrap{
+/*.data-wrap{
     height: 500px;
     margin:0;
     padding: 0;
     position: relative;
-}
+}*/
 
 .legend-wrap{
     position: absolute;

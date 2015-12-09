@@ -2,7 +2,7 @@
 // js for csv
 
 var mydata_pla = [];
-var radius = 600;
+var radius = 500;
 var canvas_width = window.innerWidth;
 var canvas_height = window.innerHeight - 200;
 //var canvas_width = 1028 - 200;
@@ -17,15 +17,15 @@ var clicked_cate_pla = new Set();
 var colors = ['#F0C808', '#F694C1', '#B79CED', '#1787A0', '#15B097', '#542E71', '#5BC0EB'];
 var byTypeCenters = {
     "1": {
-        "x": canvas_width - 828,
+        "x": canvas_width - 1178,
         "y": canvas_height / 2
     },
     "2": {
-        "x": canvas_width - 18,
+        "x": canvas_width - 528,
         "y": canvas_height / 2
     },
     "3": {
-        "x": canvas_width + 282,
+        "x": canvas_width + 82,
         "y": canvas_height / 2
     }
 };

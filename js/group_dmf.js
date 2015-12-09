@@ -2,33 +2,33 @@
 // js for csv
 
 var mydata_dmf = [];
-var radius = 500;
+//var radius = 500;
 //var canvas_width = window.innerWidth - 200;
 //var canvas_height = window.innerHeight - 100;
 //var canvas_width = 1028 - 200;
 //var canvas_height = 600 - 100;
-var categories = ['化學', '農產', '飼料', '食品', '飲料', '藥品', '其他'];
-var types = ["1", "2", "3"];
+//var categories = ['化學', '農產', '飼料', '食品', '飲料', '藥品', '其他'];
+//var types = ["1", "2", "3"];
 
 var current_layout_dmf = "center";
 //var highlight = "none";
 var clicked_cate_dmf = new Set();
 
-var colors = ['#F0C808', '#F694C1', '#B79CED', '#1787A0', '#15B097', '#542E71', '#5BC0EB'];
-var byTypeCenters = {
-    "1": {
-        "x": -190,
-        "y": canvas_height / 2
-    },
-    "2": {
-        "x": 610,
-        "y": canvas_height / 2
-    },
-    "3": {
-        "x": 1310,
-        "y": canvas_height / 2
-    }
-};
+//var colors = ['#F0C808', '#F694C1', '#B79CED', '#1787A0', '#15B097', '#542E71', '#5BC0EB'];
+//var byTypeCenters = {
+//    "1": {
+//        "x": -190,
+//        "y": canvas_height / 2
+//    },
+//    "2": {
+//        "x": 610,
+//        "y": canvas_height / 2
+//    },
+//    "3": {
+//        "x": 1310,
+//        "y": canvas_height / 2
+//    }
+//};
 
 var svg_dmf = d3.select("#svg-wrap-dmf").append("svg")
         .attr("width", canvas_width)
@@ -231,7 +231,7 @@ function start_dmf() {
             .gravity(0.1)
             .friction(0.8)
             .charge(function (d) {
-                return -Math.pow(d.Capital, 0.45);
+                return -Math.pow(d.Capital, 0.42);
             })
             .on("tick", function (e) {
                 var k = 0.1 * e.alpha;
@@ -264,7 +264,7 @@ function start_dmf() {
                 return d.y;
             })
             .attr("r", function (d) {
-                return Math.log(d.Amount * 10000000000);
+                return Math.log(d.Amount * 1000000000);
             })
             .attr("class", function (d) {
                 return d.Risk;

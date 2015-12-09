@@ -25,9 +25,9 @@ $('ul.nav a').on('shown.bs.tab', function (e) {
                     "location": "bottom-center"
                 },
                 "size": {
-                    "canvasHeight": 260,
-                    "canvasWidth": 320,
-                    "pieOuterRadius": "80%"
+                    "canvasHeight": 240,
+                    "canvasWidth": 240,
+                    "pieOuterRadius": "60%"
                 },
                 "data": {
                     "sortOrder": "value-asc",

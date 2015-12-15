@@ -39,7 +39,7 @@ var pie_pla = new d3pie("#pie_pla", {
 			{
 				"label": "食品",
 				"value": 10.99,
-				"color": "#1787A0"
+				"color": "#70AE6E"
 			},
 			{
 				"label": "藥品",
@@ -49,7 +49,7 @@ var pie_pla = new d3pie("#pie_pla", {
 			{
 				"label": "飲料",
 				"value": 3.3,
-				"color": "#15B097"
+				"color": "#996c33"
 			}
 		]
 	},

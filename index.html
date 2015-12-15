@@ -6,14 +6,14 @@
         <meta charset="utf-8">
         <!--[if IE]><meta http-equiv="x-ua-compatible" content="IE=9" /><![endif]-->
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>食安勾稽分析模型</title>
+        <title>食安勾稽分析模型：BeehiveData</title>
         <meta name="description" content="Spirit8 is a Digital agency one page template built based on bootstrap framework. This template is design by Robert Berki and coded by Jenn Pereira. It is simple, mobile responsive, perfect for portfolio and agency websites. Get this for free exclusively at ThemeForces.com">
         <meta name="keywords" content="bootstrap theme, portfolio template, digital agency, onepage, mobile responsive, spirit8, free website, free theme, themeforces themes, themeforces wordpress themes, themeforces bootstrap theme">
         <meta name="author" content="ThemeForces.com">
 
         <!-- Favicons
         ================================================== -->
-        <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="img/bee.png" type="image/x-icon">
         <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
         <link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
         <link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
@@ -33,10 +33,10 @@
 
         <!-- Stylesheet
         ================================================== -->
-        <link rel="stylesheet" type="text/css"  href="css/style.css">
-        <link rel="stylesheet" type="text/css" href="css/responsive.css">
+        <link rel="stylesheet" type="text/css"  href="css/style.css">       
         <link rel="stylesheet" type="text/css" href="css/customized.css">
-
+        <link rel="stylesheet" type="text/css" href="css/responsive.css">
+        
         <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,700,300,600,800,400' rel='stylesheet' type='text/css'>
 
@@ -115,18 +115,19 @@
                             </div> -->
                             <div class="panel alert-danger-alt">
                                 <div class="panel-heading">
-                                    <span style="font-size:16px;"><span style="font-size:18px">塑化劑</span>的風險分群模型</span>
+                                    <span style="font-size:16px;"><span style="font-size:18px">塑化劑</span>的風險廠商特性分析</span>
                                     <br>風險廠商數：<span style="font-size:24px; font-weight:bold;font-family:'Century Gothic';">  31  </span>家 
                                 </div>
-                                <div class="panel-body">
+                                <div class="panel-body" style="text-align:left;">
                                     <i class="fa fa-exclamation-circle"></i>
-                                    <strong>塑化劑</strong>毒性不高，屬環境荷爾蒙一種，出現在食品不合邏輯。降低成本及增加產品穩定性，業者將塑化劑添加至起雲劑中，常用於飲料、果醬、果汁粉末。
+                                    <strong>塑化劑（Plasticizer）：</strong>為降低成本及增加產品穩定性，業者有可能將塑化劑添加至起雲劑中，常用於運動飲料、果汁茶飲、果凍、果醬、優酪或果汁粉末。另六類塑化劑中(DEHP、DBP、DIBP、DNOP、DIDP、DINP)，DEHP毒性不高，屬環境荷爾蒙一種，出現在食品屬最不合邏輯。
                                 </div>
                             </div>
                             <div id="pie_pla"></div>
                             <div class="alert alert-graph-rule alert-dismissable" style="padding:5px;width:260px;text-align:left;">
                                 <i class="fa fa-info-circle"></i>
-                                分群模型中圓圈顏色依據稅籍登記類別；圓圈大小則根據該企業之資本額。
+                                識別規則：圓圈顏色係依據營業稅籍分類；圓圈大小則根據毒化物運作量計算。
+                                <!--大小計算：log(運作量*a) ; 距離計算: power(資本額,a) -->
                             </div>
                         </div>
                         <div id="label-wrap-pla" class="label-wrap" style="display: none;">
@@ -149,13 +150,13 @@
                                     <div class="summary" id="pla-飼料-summary"></div>
                                     <div class="cateinter" id="pla-飼料-cateinter"></div>
                                 </div>
-                                <div class="label-content-pla" id="l-pla-食品" style="color: #1787A0; display: none;">
+                                <div class="label-content-pla" id="l-pla-食品" style="color: #70AE6E; display: none;">
                                     <div class="percentage">10.99%</div>
                                     <div class="categ">食品</div>
                                     <div class="summary" id="pla-食品-summary"></div>
                                     <div class="cateinter" id="pla-食品-cateinter"></div>
                                 </div>
-                                <div class="label-content-pla" id="l-pla-飲料" style="color: #15B097; display: none;">
+                                <div class="label-content-pla" id="l-pla-飲料" style="color: #996c33; display: none;">
                                     <div class="percentage">3.3%</div>
                                     <div class="categ">飲料</div>
                                     <div class="summary" id="pla-飲料-summary"></div>
@@ -181,9 +182,9 @@
                             </svg>-->
                         </div><!-- /svg-wrap -->
                         <div id="type-title-wrap-pla" class="type-title-wrap" style="display: none;">
-                            <div class="label label-danger" style="margin-top:20px;margin-left:110px;margin-right:80px;">第 I 類型態<br><span style="font-family:'Century Gothic';">24%</span></div>
-                            <div class="label label-warning" style="margin-top:20px;margin-left:120px;margin-right:20px;">第 II 類型態<br><span style="font-family:'Century Gothic';">24%</span></div>
-                            <div class="label label-info" style="margin-top:20px;margin-left:180px;margin-right:110px;">第 III 類型態<br><span style="font-family:'Century Gothic';">24%</span></div>
+                            <div class="label label-danger" style="margin-top:20px;margin-left:110px;margin-right:80px;">第 I 類型態<br><span style="font-family:'Century Gothic';">35.48%</span></div>
+                            <div class="label label-warning" style="margin-top:20px;margin-left:120px;margin-right:20px;">第 II 類型態<br><span style="font-family:'Century Gothic';">9.68%</span></div>
+                            <div class="label label-info" style="margin-top:20px;margin-left:180px;margin-right:110px;">第 III 類型態<br><span style="font-family:'Century Gothic';">54.84%</span></div>
                         </div>
                     </div><!-- /col-md-10 -->
                     <div class="col-md-2">
@@ -193,7 +194,7 @@
                         </div>
                     </div>
                 </div><!-- /data-wrap -->
-                <div class="menu-wrap">
+                <div class="menu-wrap" id="menu-wrap-pla">
                     <div class="category-wrap">
                         <div class="cate-box-pla" id="cate-box-pla-化學" style="opacity: 1; background-color: transparent;">
                             <div class="cate-title" style="background-color:#F0C808"><i class="fa fa-flask"></i>&nbsp;&nbsp;&nbsp;化學</div>
@@ -205,10 +206,10 @@
                             <div class="cate-title" style="background-color:#B79CED"><i class="fa fa-paw"></i>&nbsp;&nbsp;&nbsp;飼料</div>
                         </div>
                         <div class="cate-box-pla" id="cate-box-pla-食品" style="opacity: 1; background-color: transparent;">
-                            <div class="cate-title" style="background-color:#1787A0"><i class="fa fa-cutlery"></i>&nbsp;&nbsp;&nbsp;食品</div>
+                            <div class="cate-title" style="background-color:#70AE6E"><i class="fa fa-cutlery"></i>&nbsp;&nbsp;&nbsp;食品</div>
                         </div>
                         <div class="cate-box-pla" id="cate-box-pla-飲料" style="opacity: 1; background-color: transparent;">
-                            <div class="cate-title" style="background-color:#15B097"><i class="fa fa-coffee"></i>&nbsp;&nbsp;&nbsp;飲料</div>
+                            <div class="cate-title" style="background-color:#996c33"><i class="fa fa-coffee"></i>&nbsp;&nbsp;&nbsp;飲料</div>
                         </div>
                         <div class="cate-box-pla" id="cate-box-pla-藥品" style="opacity: 1; background-color: transparent;">
                             <div class="cate-title" style="background-color:#542E71"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;&nbsp;藥品</div>
@@ -234,18 +235,18 @@
                             </div>-->
                             <div class="panel alert-danger-alt">
                                 <div class="panel-heading">
-                                    <span style="font-size:16px"><span style="font-size:18px">甲醛</span>的風險分群模型</span>
+                                    <span style="font-size:16px"><span style="font-size:18px">甲醛</span>的風險廠商特性分析</span>
                                     <br>風險廠商數：<span style="font-size:24px; font-weight:bold;font-family:'Century Gothic';">  87  </span>家
                                 </div>
-                                <div class="panel-body">
+                                <div class="panel-body" style="text-align:left;">
                                     <i class="fa fa-exclamation-circle"></i>
-                                    <strong>甲醛</strong>可使食物保鮮防腐、漂白(用途廣泛、違規空間大)，有多起用於米粉、海產食品的違法案例。醫藥品業者、生技廠、學校、食品檢驗，萃取化學成分再用於製藥。
+                                    <strong>甲醛（Formaldehyde）：</strong>一級致癌物質，長期吸入甲醛，會增加罹患上呼吸道癌症的機率，作用於食品上，食入人體更有致癌的危險性。另可使食物保鮮防腐、漂白，其用途廣泛，違規空間亦大，現有多起用於蘿蔔乾、米粉、海產食品的違法案例。而醫藥品業者、生技廠、學校、食品檢驗，也多萃取其化學成分再用於製藥。
                                 </div>
                             </div>
                             <div id="pie_for"></div>
                             <div class="alert alert-graph-rule alert-dismissable" style="padding:5px;width:260px;text-align:left;">
                                 <i class="fa fa-info-circle"></i>
-                                分群模型中圓圈顏色依據稅籍登記類別；圓圈大小則根據該企業之資本額。
+                                識別規則：圓圈顏色係依據營業稅籍分類；圓圈大小則根據毒化物運作量計算。
                             </div>
                         </div>
                         <div id="label-wrap-for" class="label-wrap" style="display: none;">
@@ -268,13 +269,13 @@
                                     <div class="summary" id="for-飼料-summary"></div>
                                     <div class="cateinter" id="for-飼料-cateinter"></div>
                                 </div>
-                                <div class="label-content-for" id="l-for-食品" style="color: #1787A0; display: none;">
+                                <div class="label-content-for" id="l-for-食品" style="color: #70AE6E; display: none;">
                                     <div class="percentage">20.5%</div>
                                     <div class="categ">食品</div>
                                     <div class="summary" id="for-食品-summary"></div>
                                     <div class="cateinter" id="for-食品-cateinter"></div>
                                 </div>
-                                <div class="label-content-for" id="l-for-飲料" style="color: #15B097; display: none;">
+                                <div class="label-content-for" id="l-for-飲料" style="color: #996c33; display: none;">
                                     <div class="percentage">11.87%</div>
                                     <div class="categ">飲料</div>
                                     <div class="summary" id="for-飲料-summary"></div>
@@ -300,9 +301,9 @@
                             </svg>-->
                         </div><!-- /svg-wrap -->
                         <div id="type-title-wrap-for" class="type-title-wrap" style="display: none;">
-                            <div class="label label-danger" style="margin-top:20px;margin-left:110px;margin-right:80px;">第 I 類型態<br><span style="font-family:'Century Gothic';">24%</span></div>
-                            <div class="label label-warning" style="margin-top:20px;margin-left:120px;margin-right:20px;">第 II 類型態<br><span style="font-family:'Century Gothic';">24%</span></div>
-                            <div class="label label-info" style="margin-top:20px;margin-left:180px;margin-right:110px;">第 III 類型態<br><span style="font-family:'Century Gothic';">24%</span></div>
+                            <div class="label label-danger" style="margin-top:20px;margin-left:110px;margin-right:80px;">第 I 類型態<br><span style="font-family:'Century Gothic';">2.20%</span></div>
+                            <div class="label label-warning" style="margin-top:20px;margin-left:120px;margin-right:20px;">第 II 類型態<br><span style="font-family:'Century Gothic';">42.86%</span></div>
+                            <div class="label label-info" style="margin-top:20px;margin-left:180px;margin-right:110px;">第 III 類型態<br><span style="font-family:'Century Gothic';">54.95%</span></div>
                         </div>
                     </div><!-- /col-md-10 -->
                     <div class="col-md-2">
@@ -312,7 +313,7 @@
                         </div>
                     </div>
                 </div><!-- /data-wrap -->
-                <div class="menu-wrap">
+                <div class="menu-wrap" id="menu-wrap-for">
                     <div class="category-wrap">
                         <div class="cate-box-for" id="cate-box-for-化學" style="opacity: 1; background-color: transparent;">
                             <div class="cate-title" style="background-color:#F0C808"><i class="fa fa-flask"></i>&nbsp;&nbsp;&nbsp;化學</div>
@@ -324,10 +325,10 @@
                             <div class="cate-title" style="background-color:#B79CED"><i class="fa fa-paw"></i>&nbsp;&nbsp;&nbsp;飼料</div>
                         </div>
                         <div class="cate-box-for" id="cate-box-for-食品" style="opacity: 1; background-color: transparent;">
-                            <div class="cate-title" style="background-color:#1787A0"><i class="fa fa-cutlery"></i>&nbsp;&nbsp;&nbsp;食品</div>
+                            <div class="cate-title" style="background-color:#70AE6E"><i class="fa fa-cutlery"></i>&nbsp;&nbsp;&nbsp;食品</div>
                         </div>
                         <div class="cate-box-for" id="cate-box-for-飲料" style="opacity: 1; background-color: transparent;">
-                            <div class="cate-title" style="background-color:#15B097"><i class="fa fa-coffee"></i>&nbsp;&nbsp;&nbsp;飲料</div>
+                            <div class="cate-title" style="background-color:#996c33"><i class="fa fa-coffee"></i>&nbsp;&nbsp;&nbsp;飲料</div>
                         </div>
                         <div class="cate-box-for" id="cate-box-for-藥品" style="opacity: 1; background-color: transparent;">
                             <div class="cate-title" style="background-color:#542E71"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;&nbsp;藥品</div>
@@ -353,18 +354,18 @@
                             </div>-->
                             <div class="panel alert-danger-alt">
                                 <div class="panel-heading">
-                                    <span style="font-size:16px"><span style="font-size:18px">二氯甲烷</span>的風險分群模型</span>
+                                    <span style="font-size:16px"><span style="font-size:18px">二氯甲烷</span>的風險廠商特性分析</span>
                                     <br>風險廠商數：<span style="font-size:24px; font-weight:bold;font-family:'Century Gothic';">  165  </span>家
                                 </div>
-                                <div class="panel-body">
+                                <div class="panel-body" style="text-align:left;">
                                     <i class="fa fa-exclamation-circle"></i>
-                                    <strong>二氯甲烷</strong>常被萃取其中之化學成分用於製藥，為工業溶劑、加工助劑，非產品成分，多用於香料製造、啤酒花萃取、去咖啡因、管理殘留量。成本不高，容易取得，管制力不大。
+                                    <strong>二氯甲烷（Dichloromethane）：</strong>其主要用途為工業溶劑或加工助劑性質，非產品成分，多用於香料製造、啤酒花萃取、去咖啡因、咖啡製造等。而其因容易取得，成本不高，故管制力也不大，增加其違規空間的可能性。另醫藥品業者、生技廠、學校、食品檢驗，也多萃取其化學成分再用於製藥。
                                 </div>
                             </div>
                             <div id="pie_dic"></div>
                             <div class="alert alert-graph-rule alert-dismissable" style="padding:5px;width:260px;text-align:left;">
                                 <i class="fa fa-info-circle"></i>
-                                分群模型中圓圈顏色依據稅籍登記類別；圓圈大小則根據該企業之資本額。
+                                識別規則：圓圈顏色係依據營業稅籍分類；圓圈大小則根據毒化物運作量計算。
                             </div>
                         </div>
                         <div id="label-wrap-dic" class="label-wrap" style="display: none;">
@@ -387,13 +388,13 @@
                                     <div class="summary" id="dic-飼料-summary"></div>
                                     <div class="cateinter" id="dic-飼料-cateinter"></div>
                                 </div>
-                                <div class="label-content-dic" id="l-dic-食品" style="color: #1787A0; display: none;">
+                                <div class="label-content-dic" id="l-dic-食品" style="color: #70AE6E; display: none;">
                                     <div class="percentage">19.72%</div>
                                     <div class="categ">食品</div>
                                     <div class="summary" id="dic-食品-summary"></div>
                                     <div class="cateinter" id="dic-食品-cateinter"></div>
                                 </div>
-                                <div class="label-content-dic" id="l-dic-飲料" style="color: #15B097; display: none;">
+                                <div class="label-content-dic" id="l-dic-飲料" style="color: #996c33; display: none;">
                                     <div class="percentage">5.13%</div>
                                     <div class="categ">飲料</div>
                                     <div class="summary" id="dic-飲料-summary"></div>
@@ -419,9 +420,9 @@
                             </svg>-->
                         </div><!-- /svg-wrap -->
                         <div id="type-title-wrap-dic" class="type-title-wrap" style="display: none;">
-                            <div class="label label-danger" style="margin-top:20px;margin-left:110px;margin-right:80px;">第 I 類型態<br><span style="font-family:'Century Gothic';">24%</span></div>
-                            <div class="label label-warning" style="margin-top:20px;margin-left:120px;margin-right:20px;">第 II 類型態<br><span style="font-family:'Century Gothic';">24%</span></div>
-                            <div class="label label-info" style="margin-top:20px;margin-left:180px;margin-right:110px;">第 III 類型態<br><span style="font-family:'Century Gothic';">24%</span></div>
+                            <div class="label label-danger" style="margin-top:20px;margin-left:110px;margin-right:80px;">第 I 類型態<br><span style="font-family:'Century Gothic';">38.46%</span></div>
+                            <div class="label label-warning" style="margin-top:20px;margin-left:120px;margin-right:20px;">第 II 類型態<br><span style="font-family:'Century Gothic';">42.6%</span></div>
+                            <div class="label label-info" style="margin-top:20px;margin-left:180px;margin-right:110px;">第 III 類型態<br><span style="font-family:'Century Gothic';">18.93%</span></div>
                         </div>
                     </div><!-- /col-md-10 -->
                     <div class="col-md-2">
@@ -431,7 +432,7 @@
                         </div>
                     </div>
                 </div><!-- /data-wrap -->
-                <div class="menu-wrap">
+                <div class="menu-wrap" id="menu-wrap-dic">
                     <div class="category-wrap">
                         <div class="cate-box-dic" id="cate-box-dic-化學" style="opacity: 1; background-color: transparent;">
                             <div class="cate-title" style="background-color:#F0C808"><i class="fa fa-flask"></i>&nbsp;&nbsp;&nbsp;化學</div>
@@ -443,10 +444,10 @@
                             <div class="cate-title" style="background-color:#B79CED"><i class="fa fa-paw"></i>&nbsp;&nbsp;&nbsp;飼料</div>
                         </div>
                         <div class="cate-box-dic" id="cate-box-dic-食品" style="opacity: 1; background-color: transparent;">
-                            <div class="cate-title" style="background-color:#1787A0"><i class="fa fa-cutlery"></i>&nbsp;&nbsp;&nbsp;食品</div>
+                            <div class="cate-title" style="background-color:#70AE6E"><i class="fa fa-cutlery"></i>&nbsp;&nbsp;&nbsp;食品</div>
                         </div>
                         <div class="cate-box-dic" id="cate-box-dic-飲料" style="opacity: 1; background-color: transparent;">
-                            <div class="cate-title" style="background-color:#15B097"><i class="fa fa-coffee"></i>&nbsp;&nbsp;&nbsp;飲料</div>
+                            <div class="cate-title" style="background-color:#996c33"><i class="fa fa-coffee"></i>&nbsp;&nbsp;&nbsp;飲料</div>
                         </div>
                         <div class="cate-box-dic" id="cate-box-dic-藥品" style="opacity: 1; background-color: transparent;">
                             <div class="cate-title" style="background-color:#542E71"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;&nbsp;藥品</div>
@@ -472,18 +473,18 @@
                             </div>-->
                             <div class="panel alert-danger-alt">
                                 <div class="panel-heading">
-                                    <span style="font-size:16px"><span style="font-size:18px">二甲基甲醯安</span>的風險分群模型</span>
+                                    <span style="font-size:14px"><span style="font-size:16px">二甲基甲醯胺</span>的風險廠商特性分析</span>
                                     <br>風險廠商數：<span style="font-size:24px; font-weight:bold;font-family:'Century Gothic';">  104  </span>家
                                 </div>
-                                <div class="panel-body">
+                                <div class="panel-body" style="text-align:left;">
                                     <i class="fa fa-exclamation-circle"></i>
-                                    <strong>二甲基甲醯安</strong>抑菌力強，抑菌種類多，用於食品、糧食、飼料、菸草、化妝品的防腐、防霉。添加於食品中，可使食品不易黴變、保存期長、色澤鮮豔，但易損害腸胃道、內臟、引起過敏。
+                                    <strong>二甲基甲醯胺（DMF）：</strong>抑菌力強，抑菌種類多，多用於食品、糧食、飼料、菸草、化妝品的防腐、防霉上。而添加於食品中，可使食品不易黴變、保存期長、色澤鮮艷，但易損害腸胃道、內臟，引起過敏。而國際癌症研究機構（IARC）表示其可能是一級致癌物質，其經人體各種途徑吸收後，主要由肝內代謝與排泄，對肝臟和腎臟有一定的損害。
                                 </div>
                             </div>
                             <div id="pie_dmf"></div>
                             <div class="alert alert-graph-rule alert-dismissable" style="padding:5px;width:260px;text-align:left;">
                                 <i class="fa fa-info-circle"></i>
-                                分群模型中圓圈顏色依據稅籍登記類別；圓圈大小則根據該企業之資本額。
+                                識別規則：圓圈顏色係依據營業稅籍分類；圓圈大小則根據毒化物運作量計算。
                             </div>
                         </div>
                         <div id="label-wrap-dmf" class="label-wrap" style="display: none;">
@@ -506,13 +507,13 @@
                                     <div class="summary" id="dmf-飼料-summary"></div>
                                     <div class="cateinter" id="dmf-飼料-cateinter"></div>
                                 </div>
-                                <div class="label-content-dmf" id="l-dmf-食品" style="color: #1787A0; display: none;">
+                                <div class="label-content-dmf" id="l-dmf-食品" style="color: #70AE6E; display: none;">
                                     <div class="percentage">16.31%</div>
                                     <div class="categ">食品</div>
                                     <div class="summary" id="dmf-食品-summary"></div>
                                     <div class="cateinter" id="dmf-食品-cateinter"></div>
                                 </div>
-                                <div class="label-content-dmf" id="l-dmf-飲料" style="color: #15B097; display: none;">
+                                <div class="label-content-dmf" id="l-dmf-飲料" style="color: #996c33; display: none;">
                                     <div class="percentage">3.02%</div>
                                     <div class="categ">飲料</div>
                                     <div class="summary" id="dmf-飲料-summary"></div>
@@ -538,9 +539,9 @@
                             </svg>-->
                         </div><!-- /svg-wrap -->
                         <div id="type-title-wrap-dmf" class="type-title-wrap" style="display: none;">
-                            <div class="label label-danger" style="margin-top:20px;margin-left:110px;margin-right:80px;">第 I 類型態<br><span style="font-family:'Century Gothic';">24%</span></div>
-                            <div class="label label-warning" style="margin-top:20px;margin-left:120px;margin-right:20px;">第 II 類型態<br><span style="font-family:'Century Gothic';">24%</span></div>
-                            <div class="label label-info" style="margin-top:20px;margin-left:180px;margin-right:110px;">第 III 類型態<br><span style="font-family:'Century Gothic';">24%</span></div>
+                            <div class="label label-danger" style="margin-top:20px;margin-left:110px;margin-right:80px;">第 I 類型態<br><span style="font-family:'Century Gothic';">2.83%</span></div>
+                            <div class="label label-warning" style="margin-top:20px;margin-left:120px;margin-right:20px;">第 II 類型態<br><span style="font-family:'Century Gothic';">43.39%</span></div>
+                            <div class="label label-info" style="margin-top:20px;margin-left:180px;margin-right:110px;">第 III 類型態<br><span style="font-family:'Century Gothic';">53.77%</span></div>
                         </div>
                     </div><!-- /col-md-10 -->
                     <div class="col-md-2">
@@ -550,7 +551,7 @@
                         </div>
                     </div>
                 </div><!-- /data-wrap -->
-                <div class="menu-wrap">
+                <div class="menu-wrap" id="menu-wrap-dmf">
                     <div class="category-wrap">
                         <div class="cate-box-dmf" id="cate-box-dmf-化學" style="opacity: 1; background-color: transparent;">
                             <div class="cate-title" style="background-color:#F0C808"><i class="fa fa-flask"></i>&nbsp;&nbsp;&nbsp;化學</div>
@@ -562,10 +563,10 @@
                             <div class="cate-title" style="background-color:#B79CED"><i class="fa fa-paw"></i>&nbsp;&nbsp;&nbsp;飼料</div>
                         </div>
                         <div class="cate-box-dmf" id="cate-box-dmf-食品" style="opacity: 1; background-color: transparent;">
-                            <div class="cate-title" style="background-color:#1787A0"><i class="fa fa-cutlery"></i>&nbsp;&nbsp;&nbsp;食品</div>
+                            <div class="cate-title" style="background-color:#70AE6E"><i class="fa fa-cutlery"></i>&nbsp;&nbsp;&nbsp;食品</div>
                         </div>
                         <div class="cate-box-dmf" id="cate-box-dmf-飲料" style="opacity: 1; background-color: transparent;">
-                            <div class="cate-title" style="background-color:#15B097"><i class="fa fa-coffee"></i>&nbsp;&nbsp;&nbsp;飲料</div>
+                            <div class="cate-title" style="background-color:#996c33"><i class="fa fa-coffee"></i>&nbsp;&nbsp;&nbsp;飲料</div>
                         </div>
                         <div class="cate-box-dmf" id="cate-box-dmf-藥品" style="opacity: 1; background-color: transparent;">
                             <div class="cate-title" style="background-color:#542E71"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;&nbsp;藥品</div>

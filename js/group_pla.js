@@ -7,14 +7,17 @@ var canvas_width = window.innerWidth;
 var canvas_height = window.innerHeight - 200;
 //var canvas_width = 1028 - 200;
 //var canvas_height = 600 - 100;
-var categories = ['化學', '農產', '飼料', '食品', '飲料', '藥品', '其他'];
+//var categories = ['化學', '農產', '飼料', '食品', '飲料', '藥品', '其他'];
+//var colors = ['#F0C808', '#F694C1', '#B79CED', '#70AE6E', '#996c33', '#542E71', '#5BC0EB'];
 var types = ["1", "2", "3"];
 
 var current_layout_pla = "center";
 //var highlight = "none";
 var clicked_cate_pla = new Set();
 
-var colors = ['#F0C808', '#F694C1', '#B79CED', '#1787A0', '#15B097', '#542E71', '#5BC0EB'];
+var categories = ['化學', '食品', '飲料', '農產', '飼料', '藥品', '其他'];
+var colors = ['#F0C808', '#70AE6E', '#996c33', '#F694C1', '#B79CED', '#542E71', '#5BC0EB'];
+
 var byTypeCenters = {
     "1": {
         "x": canvas_width - 1178,
@@ -70,6 +73,27 @@ d3.json("Plasticizer.json", function (error, data) {
     }
 });
 
+function colororder_pla(d) {
+    var color = "";
+    if ($.inArray('化學', d.Category) > -1) {
+        color = colors[categories.indexOf('化學')];
+    } else if ($.inArray('食品', d.Category) > -1) {
+        color = colors[categories.indexOf('食品')];
+    } else if ($.inArray('飲料', d.Category) > -1) {
+        color = colors[categories.indexOf('飲料')];
+    } else if ($.inArray('藥品', d.Category) > -1) {
+        color = colors[categories.indexOf('藥品')];
+    } else if ($.inArray('農產', d.Category) > -1) {
+        color = colors[categories.indexOf('農產')];
+    } else if ($.inArray('飼料', d.Category) > -1) {
+        color = colors[categories.indexOf('飼料')];
+    } else if ($.inArray('其他', d.Category) > -1) {
+        color = colors[categories.indexOf('其他')];
+    }
+    console.log(d.ComName + " " + color);
+    return color;
+}
+
 function start() {
 
     // prepare d3 tips
@@ -113,13 +137,42 @@ function start() {
     function switch_view(view) {
         var type_dis_pla;
         var cate_dis_pla;
-        if (view == "byType") {
+        console.log($(window).width());
+        if (view == "byType") {//分群
             type_dis_pla = "block";
             cate_dis_pla = "none";
+
+            if ($(window).width() <= 1024) {//窄螢幕
+                var setWidth = $(window).width() / 2 - 280;
+                d3.select("#svg-wrap-pla").style("position", "relative").style("top", "40px").style("left", "-10px");//test
+                d3.select("#menu-wrap-pla")
+                        .style("position", "relative").style("top", "-80px").style("left", setWidth + "px")
+                        .style("height", "50px").style("width", "600px");
+            } else {//寬螢幕
+                var setWidth = $(window).width() / 2 - 480;
+                d3.select("#svg-wrap-pla").style("position", "relative").style("top", "30px").style("left", "-280px");//test
+                d3.select("#menu-wrap-pla")
+                        .style("position", "relative").style("top", "-120px").style("left", setWidth + "px")
+                        .style("height", "50px").style("width", "600px");
+            }
         }
-        else {
+        else {//總覽
             type_dis_pla = "none";
             cate_dis_pla = "block";
+            d3.select("#svg-wrap-pla").style("position", "static");//解圖層覆蓋無法點擊其他div、svg的問題
+            if ($(window).width() <= 1024) {//窄螢幕
+                var setWidth = $(window).width() / 2 - 160;
+                d3.select("#svg-wrap-pla").style("top", "30px").style("left", "30px");//test
+                d3.select("#menu-wrap-pla")
+                        .style("position", "relative").style("top", "-80px").style("left", setWidth + "px")
+                        .style("height", "50px").style("width", "600px");
+            } else {//寬螢幕
+                var setWidth = $(window).width() / 2 - 300;
+                d3.select("#svg-wrap-pla").style("top", "30px").style("left", "-65px");//分群
+                d3.select("#menu-wrap-pla")
+                        .style("position", "relative").style("top", "-120px").style("left", setWidth + "px")
+                        .style("height", "50px").style("width", "600px");//項目
+            }
         }
 //        d3.select("#type-wrap-pla").style("display", type_dis_pla);
         d3.select("#type-title-wrap-pla").style("display", type_dis_pla);
@@ -142,20 +195,21 @@ function start() {
                 var strSummary = "";
                 if (clicked_cate_pla.has(cate)) {
                     clicked_cate_pla.delete(cate);
+                    $("#pla-" + cate + "-cateinter").html("");//取消按鈕前，先清空交集廠商數
                     cancel_highlight(clicked_cate_pla);
                     d3.select("#cate-box-pla-" + cate).style("opacity", 0.3).style("background-color", "transparent");
                     d3.select("#label-wrap-pla").style("display", "none");
                 } else {
                     clicked_cate_pla.add(cate);
-                    set_highlight(clicked_cate_pla, cate);
                     mydata_pla.forEach(function (o, i) {
                         o.Category.forEach(function (j) {
                             if (j == cate) {
-                                strSummary += o.ComName + "<br>";
+                                strSummary += "<div id=" + o.ComName + ">" + o.ComName + "</div>";
                             }
                         })
                     });
-                    $("#pla-" + cate + "-summary").html(strSummary);
+                    $("#pla-" + cate + "-summary").html(strSummary);//風險廠商清單
+                    set_highlight(clicked_cate_pla, cate);//關聯廠商
                     d3.select("#l-pla-" + cate).style("display", "block");
                     clicked_cate_pla.forEach(function (c) {
                         d3.select("#cate-box-pla-" + c).style("opacity", 1)
@@ -167,7 +221,8 @@ function start() {
                     d3.selectAll(".cate-box-pla").style("opacity", 1)
                             .style("background-color", "transparent");
                     circles_pla.style("fill", function (d) {
-                        return colors[categories.indexOf(d.Category[0])];
+//                        return colors[categories.indexOf(d.Category[0])];
+                        return colororder_pla(d);
                     });
                     d3.select("#label-wrap-pla").style("display", "none");
                 }
@@ -201,6 +256,7 @@ function start() {
             var col;
             catelist.forEach(function (cate) {
                 if (d.Category.indexOf(cate) > -1) {
+
                     col = colors[categories.indexOf(d.Category[d.Category.indexOf(cate)])];
                     mixedcnt += 1;
                 }
@@ -211,11 +267,15 @@ function start() {
             if (mixedcnt == catelist.size && mixedcnt != 1) {
                 col = "red";
                 cntCateinter += 1;
+
+                //將風險廠商交集處畫紅字
+                //console.log(d);//test
+                $("#" + d.ComName).css("color", "red");
             }
             return col;
         });
 //        console.log(cntCateinter);
-        if(cntCateinter != 0) {
+        if (cntCateinter != 0) {
             $("#pla-" + cate + "-cateinter").html("交集的廠商數：" + cntCateinter);
         }
         cate_boxes_pla.style("opacity", 0.3);
@@ -271,11 +331,10 @@ function start() {
                 return d.Risk;
             })
             .attr("class", function (d) {
-//                console.log(d.Category[1]);
                 return d.Category[0];
             })
             .style("fill", function (d) {
-                return colors[categories.indexOf(d.Category[0])];
+                return colororder_pla(d);
             })
             .style("stroke", "white")
             .style("stroke-width", "2px")

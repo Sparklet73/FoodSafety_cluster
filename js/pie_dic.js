@@ -45,7 +45,7 @@ $('ul.nav a').on('shown.bs.tab', function (e) {
                         {
                             "label": "食品",
                             "value": 19.72,
-                            "color": "#1787A0"
+                            "color": "#70AE6E"
                         },
                         {
                             "label": "藥品",
@@ -55,7 +55,7 @@ $('ul.nav a').on('shown.bs.tab', function (e) {
                         {
                             "label": "飲料",
                             "value": 5.13,
-                            "color": "#15B097"
+                            "color": "#996c33"
                         },
                         {
                             "label": "農產",

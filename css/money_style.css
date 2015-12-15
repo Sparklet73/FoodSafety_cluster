@@ -1,0 +1,332 @@
+/*style for tips*/
+.d3-tip {
+  max-width: 150px;
+  min-width: 100px;
+  text-decoration: none;
+  text-shadow:none;
+  line-height: 1;
+  padding: 10px;
+  background: #333;
+  color: #eee;
+  border-radius: 5px;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: #333;
+  position: absolute;
+  pointer-events: none;
+  content: "\25BC";
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+  text-align: center;
+}
+
+/*style for tip text*/
+.tip-cate{
+  font: 14px "Roboto", sans-serif;
+  font-weight: 300;
+  border-bottom: solid #eee 1px;
+  padding-bottom: 5px;
+}
+
+.tip-date{
+  font: 10px "Roboto", sans-serif;
+  font-weight: 300;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.tip-amount{
+  font: 16px "Roboto", sans-serif;
+  font-weight: 300;
+  color: red;
+  margin-bottom: 5px;
+}
+
+.tip-desc{
+  font: 10px "Roboto", sans-serif;
+  font-weight: 300;
+}
+
+/*style for wraps*/
+#container{
+  width: 1000px;
+  margin: 10px auto;
+  text-shadow: none;
+  text-decoration: none;
+}
+
+#data-wrap{
+  width: 1000px;
+  height: 500px;
+  margin:0;
+  padding: 0;
+  position: relative;
+}
+
+#legend-wrap{
+  position: absolute;
+  left: 10px;
+  bottom: 0;
+  width: 200px;
+  height: 450px;
+  font: 12px "Roboto", sans-serif;
+  font-weight: 300;
+  color: #888;
+  text-align: center;
+  /*background-color: gray;*/
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+.leg-desc{
+  margin: 20px 10px 20px 20px;
+  width: 170px;
+  text-align: left;
+}
+
+#svg-wrap{
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+#type-title-wrap{
+  position: absolute;
+  top: 60px;
+  width: 1000px;
+  height: 50px;
+  font: 16px "Roboto", sans-serif;
+  font-weight: 100;
+  color: #888;
+  text-align: center;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+.type-title{
+  width: 60px;
+  display: inline-block;
+  text-align: center;
+  vertical-align: bottom;
+}
+
+#type-wrap{
+  position: absolute;
+  bottom: 0;
+  width: 1000px;
+  height: 60px;
+  font: 12px "Roboto", sans-serif;
+  font-weight: 300;
+  color: #888;
+}
+
+/*style for cate-label*/
+#label-wrap{
+  display: none;
+}
+
+.label{
+  width: 200px;
+  min-height:260px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px 15px;
+  position: absolute;
+  bottom:40px;
+  left:260px;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+.label:after {
+  display: inline;
+  font-size: 30px;
+  width: 100%;
+  line-height: 1;
+  color: #fff;
+  position: absolute;
+  pointer-events: none;
+  content: "\25B6";
+  margin: -4px 0 0 -7px;
+  top: 30%;
+  left: 100%;
+/*  text-align: center;*/
+}
+
+.label-content {
+  display: none;
+}
+
+.percentage{
+  font: 34px "Cutive", serif;
+  margin-top: 10px;
+
+}
+
+.categ{
+  font: 24px "Roboto", sans-serif;
+  font-weight: 300;
+  margin-top: 10px;
+  border-bottom: 1px dotted #888;
+  color: #666;
+}
+
+.summary{
+  font: 12px "Roboto", sans-serif;
+  font-weight: 300;
+  margin-top: 20px;
+  color: #666;
+}
+
+.cate-amount{
+  font: 16px "Roboto", sans-serif;
+  font-weight: 300;
+  margin-top: 20px;
+  color: #666;
+}
+
+/*br clear*/
+.clear{
+  display: none;
+  clear:both;
+}
+
+/*style for header*/
+header h1{
+  font: 22px "Cutive", serif;
+  padding-top: 12px;
+  color: #333;
+
+}
+header h3{
+  font: 12px "Roboto", sans-serif;
+  font-weight: 300;
+  color: #888;
+}
+
+header{
+  position: relative;
+  /*border-bottom: dotted 1px;*/
+
+}
+
+#title-wrap{
+  width: 100%;
+  border-bottom: solid #666 1px;
+}
+
+/*style for nav*/
+#navbar-wrap{
+  width: 304px;
+  height: 42px;
+  /*background-color: #000;*/
+}
+
+.nav{
+  width: 150px;
+  height: 26px;
+  float: left;
+  text-align: center;
+  padding-top: 5px;
+  margin-top: 15px;
+  font: 14px "Roboto", sans-serif;
+  font-weight: 300;
+  border: solid orange 1px;
+  cursor: pointer;
+}
+
+.nav-left,.nav-right{
+    transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -webkit-box-shadow: 0px 0px 10px -4px rgba(255,165,0,0);
+    -moz-box-shadow: 0px 0px 10px -4px rgba(255,165,0,0);
+    box-shadow: 0px 0px 10px -4px rgba(255,165,0,0);
+}
+
+.nav-left:hover,.nav-right:hover{
+    -webkit-box-shadow: 0px 0px 10px -4px rgba(255,165,0,1);
+    -moz-box-shadow: 0px 0px 10px -4px rgba(255,165,0,1);
+    box-shadow: 0px 0px 10px -4px rgba(255,165,0,1);
+}
+
+.nav-left{
+  border-radius: 20px 0 0 20px;
+  background-color: orange;
+  color: white;
+}
+
+.nav-right{
+  border-radius: 0 20px 20px 0;
+  background-color: white;
+  color: orange;
+}
+
+/*style for cate-area*/
+#menu-wrap{
+  padding: 10px 0 5px 0;
+  /*border-top: solid #666 1px;*/
+  border-bottom: solid #666 1px;
+}
+
+.cate-box{
+  width: 120px;
+  min-width: 120px;
+  height: 70px;
+  min-height: 80px;
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 15px 5px 15px;
+  padding: 5px;
+/*  transition: background-color 0.3s;
+  -webkit-transition: background-color 0.3s;
+  -moz-transition: background-color 0.3s;*/
+  cursor: pointer;  
+  border-radius: 10px;
+}
+
+/*.cate-box:hover{
+  background-color: #fff;
+}*/
+
+.cate-title{
+  color: white;
+  font: 14px "Roboto", sans-serif;
+  font-weight: 300;
+  text-align: center;
+  padding: 2px;
+  margin-top: 5px;
+  border-radius: 18px;
+}
+
+.cate-desc{
+  color: #666;
+  font: 10px "Roboto", sans-serif;
+  font-weight: 400;
+  padding: 4px;
+}
+
+/*for footer*/
+footer h3{
+  font: 12px "Roboto", sans-serif;
+  font-weight: 400;
+  color: #888;
+}
+
+footer div{
+  float: right;
+  padding-top: 20px;
+}

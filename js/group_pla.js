@@ -8,7 +8,7 @@ var canvas_height = window.innerHeight - 200;
 //var canvas_width = 1028 - 200;
 //var canvas_height = 600 - 100;
 //var categories = ['化學', '農產', '飼料', '食品', '飲料', '藥品', '其他'];
-//var colors = ['#F0C808', '#F694C1', '#B79CED', '#70AE6E', '#996c33', '#542E71', '#5BC0EB'];
+//var colors = ['#7D5174', '#F096CA', '#A894BF', '#247BA0', '#02C39A', '#5CCFF9', '#FFB400'];
 var types = ["1", "2", "3"];
 
 var current_layout_pla = "center";
@@ -16,7 +16,7 @@ var current_layout_pla = "center";
 var clicked_cate_pla = new Set();
 
 var categories = ['化學', '食品', '飲料', '農產', '飼料', '藥品', '其他'];
-var colors = ['#F0C808', '#70AE6E', '#996c33', '#F694C1', '#B79CED', '#542E71', '#5BC0EB'];
+var colors = ['#7D5174', '#247BA0', '#02C39A', '#F096CA', '#A894BF', '#5CCFF9', '#FFB400'];
 
 var byTypeCenters = {
     "1": {

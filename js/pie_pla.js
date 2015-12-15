@@ -29,27 +29,27 @@ var pie_pla = new d3pie("#pie_pla", {
 			{
 				"label": "化學",
 				"value": 24.18,
-				"color": "#F0C808"
+				"color": "#7D5174"
 			},
 			{
 				"label": "其他",
 				"value": 26.37,
-				"color": "#A2CD5A"
+				"color": "#FFB400"
 			},
 			{
 				"label": "食品",
 				"value": 10.99,
-				"color": "#70AE6E"
+				"color": "#247BA0"
 			},
 			{
 				"label": "藥品",
 				"value": 35.16,
-				"color": "#542E71"
+				"color": "#5CCFF9"
 			},
 			{
 				"label": "飲料",
 				"value": 3.3,
-				"color": "#996c33"
+				"color": "#02C39A"
 			}
 		]
 	},

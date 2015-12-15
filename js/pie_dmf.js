@@ -35,37 +35,37 @@ $('ul.nav a').on('shown.bs.tab', function (e) {
                         {
                             "label": "化學",
                             "value": 17.22,
-                            "color": "#F0C808"
+                            "color": "#7D5174"
                         },
                         {
                             "label": "其他",
                             "value": 24.47,
-                            "color": "#A2CD5A"
+                            "color": "#FFB400"
                         },
                         {
                             "label": "食品",
                             "value": 16.31,
-                            "color": "#70AE6E"
+                            "color": "#247BA0"
                         },
                         {
                             "label": "藥品",
                             "value": 37.46,
-                            "color": "#542E71"
+                            "color": "#5CCFF9"
                         },
                         {
                             "label": "飲料",
                             "value": 3.02,
-                            "color": "#996c33"
+                            "color": "#02C39A"
                         },
                         {
                             "label": "農產",
                             "value": 0.3,
-                            "color": "#F694C1"
+                            "color": "#F096CA"
                         },
                         {
                             "label": "飼料",
                             "value": 1.21,
-                            "color": "#B79CED"
+                            "color": "#A894BF"
                         }
                     ]
                 },
